@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+
+#wrapper {
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1000;
+}
+
+.logo {
+  width: 20px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  
+  font-size: 20px;
+  font-weight: 600;
+  
+}
+
+.nav-items {
+  display: flex;
+  gap: 2rem;
+  padding: 0 4rem;
+  margin-right: 0.5rem;
+}
+
+.nav-items div a {
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-items a:hover {
+  color: #0078ff;
+}
+
+.nav-items a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background-color: #0078ff;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.nav-items a:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ---------- HERO SECTION ---------- */
+.hero-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+  margin: 4rem auto;
+  padding: 0 1rem 8rem;
+}
+
+.faded-text {
+  position: absolute;
+  bottom: -15%;
+  left: 0;
+  user-select: none;
+  font-size: 7em;
+  color: rgb(231, 231, 231);
+  font-weight: bold;
+  z-index: 0;
+}
+
+.hero-section-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 2;
+  min-width: 420px;
+}
+
+.hero-section-heading {
+  font-size: 40px;
+  color: #343d68;
+  font-weight: 600;
+}
+
+.hero-section-subheading1,
+.hero-section-subheading2,
+.hero-section-subheading3 {
+  font-size: 28px;
+  color: #343d68;
+  font-weight: 500;
+}
+
+.hero-section-subheading2 {
+  color: #4e45d5;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.role {
+  color: #4e45d5;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.hero-section-description {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #444;
+  margin-top: 10px;
+}
+
+.dynamic-text {
+  color: #ff4b2b;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-left: 5px;
+}
+
+/* ---------- BUTTON ---------- */
+.btn-pink {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background-color: #4e45d5;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(78, 69, 213, 0.3);
+  width: fit-content;
+}
+
+.btn-pink:hover {
+  background-color: #372fc7;
+  transform: scale(1.07);
+  box-shadow: 0 6px 16px rgba(78, 69, 213, 0.4);
+}
+
+/* ---------- HERO RIGHT (BLOB + IMAGE) ---------- */
+.hero-section-right {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 400px;
+}
+
+/* Background blob PNG */
+.bg {
+  margin-top: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 360px;
+  height: 360px;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.profile-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: floatBlob 6s ease-in-out infinite;
+  
+}
+
+/* Foreground blob containing profile image */
+.blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 380px;
+  height: 380px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Profile image circular bottom */
+.profile-img {
+  width: 72%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.6s ease, filter 0.6s ease;
+  transform: translateY(10%);
+  border-bottom-left-radius: 37%;
+  border-bottom-right-radius: 37%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-bottom: 35px;
+}
+
+/* Hover effect */
+.blob:hover .profile-img,
+.profile-img:hover {
+  transform: scale(1.08) translateY(5%);
+  filter: grayscale(100%) brightness(1.1);
+}
+
+/* Floating animation */
+@keyframes floatBlob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .hero-section-right {
+    width: 320px;
+    height: 320px;
+  }
+
+  .bg, .blob {
+    width: 100%;
+    height: 100%;
+  }
+
+  .profile-img {
+    width: 70%;
+    transform: translateY(10%);
+  }
+}

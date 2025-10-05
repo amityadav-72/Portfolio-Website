@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amit Kumar Yadav</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Navbar -->
+    <div class="container">
+      <div class="navbar">
+        <div class="logo-container">
+          <img src="./Assets/A.png" class="logo" alt="Logo">
+          <div class="logo-text">mit Kumar Yadav</div>
+        </div>
+
+        <div class="nav-items">
+          <div><a href="#about">About</a></div>
+          <div><a href="#skills">Skills</a></div>
+          <div><a href="#projects">Projects</a></div>
+          <div><a href="#certifications">Certifications</a></div>
+          <div><a href="#contact">Contact</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <div class="faded-text">Amit Yadav</div>
+
+      <div class="hero-section-left">
+        <div class="hero-section-heading">Hello 👋</div>
+        <div class="hero-section-subheading1">I am</div>
+        <div class="hero-section-subheading2">Amit Kumar Yadav</div>
+        <div class="hero-section-subheading3">
+          I am a <span class="role"></span>
+        </div>
+
+        <div class="hero-section-description">
+          A final-year student passionate about
+        </div>
+        <div>
+          <span class="dynamic-text"></span>
+        </div>
+
+        <div class="btn-pink" id="btn">Hire me</div>
+      </div>
+
+     <div class="hero-section-right">
+  <!-- Blob background -->
+  <div class="bg">
+    <img src="./Assets/blob.png" alt="Blob Background" class="profile-bg">
+  </div>
+
+  <!-- Foreground blob + profile image -->
+  <div class="blob">
+    <img src="./Assets/Amit.png" alt="Amit Kumar Yadav" class="profile-img" />
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  <!-- Typed.js Animation -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    var typed = new Typed(".dynamic-text", {
+      strings: [
+        "Machine Learning",
+        "AI",
+        "Automation",
+        "Cloud Computing",
+        "Python Development"
+      ],
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 60,
+      backDelay: 1000,
+      showCursor: true,
+      cursorChar: "|"
+    });
+  </script>
+</body>
+</html>
