@@ -1,3 +1,7 @@
+/* Move About section down by 200px */
+.about-section-wrapper {
+  margin-top: 200px;
+}
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;500&display=swap");
 
 * {
@@ -7,10 +11,11 @@
   scroll-behavior: smooth;
 }
 
+
 body {
   font-family: 'Be Vietnam Pro', sans-serif;
-  background-color: #fff;
-  color: #000;
+  background-color: #f7f3f7;
+  color: #222;
 }
 
 #wrapper {
@@ -329,3 +334,122 @@ body {
         left:48%
     }
   }
+
+  /* ---------- ABOUT CARD ---------- */
+.about-card {
+  max-width: 1100px;
+
+  margin: 120px auto 40px auto; /* Move card further down */
+  background: rgba(255,255,255,0.7);
+  border-radius: 28px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  border: 2px solid #f7b2c7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px 56px;
+  gap: 32px;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(.17,.67,.83,.67);
+  will-change: transform;
+  transform: scale(1); /* Initial scale for animation */  
+}
+
+.about-card.visible {
+  transform: scale(1);  /* normal size */
+  transition: transform 0.6s ease; /* smooth transition */
+}
+
+
+.about-content {
+  max-width: 540px;
+}
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 32px;
+  color: #222;
+}
+
+.about-desc {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+.about-buttons {
+  display: flex;
+  gap: 80px;
+  margin-top: 24px;
+}
+
+.about-btn {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.8em 2.2em;
+  min-width: 180px;
+  border-radius: 2em;
+  border: 2px solid #f75c8d;
+  background: transparent;
+  color: #222;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  margin-right: -2em;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  box-sizing: border-box;
+}
+/* --- About Card Scroll Animation --- */
+.about-card.scaled {
+  transform: scale(0.85) translateY(-40px);
+}
+
+.about-btn.outline {
+  background: transparent;
+  color: #222;
+}
+
+.about-btn.filled {
+  background: #f75c8d;
+  color: #fff;
+  border: 2px solid #f75c8d;
+  margin-left: -2em;
+  z-index: 2;
+}
+
+.about-btn:hover {
+  background: #f75c8d;
+  color: #fff;
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.butterfly-img {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .about-card {
+    flex-direction: column;
+    padding: 32px 16px;
+    gap: 16px;
+  }
+  .about-image {
+    margin-top: 24px;
+  }
+  .about-content {
+    max-width: 100%;
+  }
+
+}

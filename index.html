@@ -73,8 +73,9 @@
 
 </div>
 
-    </div>
-  </div>
+
+
+  <div id="about"></div>
 
   <!-- Typed.js Animation -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -94,6 +95,40 @@
       showCursor: true,
       cursorChar: "|"
     });
+
+
+    fetch("about.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("about").innerHTML = data;
+
+        // Add scaling logic after about.html loads
+        const aboutCard = document.querySelector(".about-card");
+        if (!aboutCard) return;
+        function revealCard() {
+          const rect = aboutCard.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          if (rect.top < windowHeight *1) {
+            aboutCard.classList.add("visible");
+          } else {
+            aboutCard.classList.remove("visible");
+          }
+        }
+        window.addEventListener("scroll", revealCard);
+        revealCard();
+      })
+      .catch(error => console.error("Error loading about.html:", error));
+
+      
+fetch("projects.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("projects").innerHTML = data;
+  })
+  .catch(error => console.error("Error loading projects.html:", error));
+
   </script>
+
+
 </body>
 </html>
