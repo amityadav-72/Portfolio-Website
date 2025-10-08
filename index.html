@@ -76,10 +76,29 @@
 
 
   <div id="about"></div>
+  <div id="projects"></div>
+
+  <!-- Popup Modal -->
+  <div class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 id="modal-title"></h2>
+      <h4>Description</h4>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
 
   <!-- Typed.js Animation -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
+    // Always scroll to top on page load
+    window.addEventListener('load', function() {
+      if (window.location.hash) {
+        window.scrollTo(0, 0);
+        history.replaceState(null, '', window.location.pathname);
+      }
+    });
+
     var typed = new Typed(".dynamic-text", {
       strings: [
         "Machine Learning",
@@ -97,37 +116,161 @@
     });
 
 
-    fetch("about.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("about").innerHTML = data;
+fetch("about.html")
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("about").innerHTML = data;
 
-        // Add scaling logic after about.html loads
-        const aboutCard = document.querySelector(".about-card");
-        if (!aboutCard) return;
-        function revealCard() {
-          const rect = aboutCard.getBoundingClientRect();
-          const windowHeight = window.innerHeight;
-          if (rect.top < windowHeight *1) {
-            aboutCard.classList.add("visible");
-          } else {
-            aboutCard.classList.remove("visible");
-          }
+    // When clicking the About nav link, scroll the about card to the center of the viewport
+    function scrollAboutCenter() {
+      const about = document.getElementById('about');
+      if (!about) return;
+      const card = about.querySelector('.about-card') || about;
+      // Use scrollIntoView so it scrolls the nearest scrollable ancestor (the #wrapper)
+      card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+      // focus for accessibility (preventScroll true to avoid jumping)
+      try {
+        card.setAttribute('tabindex', '-1');
+        card.focus({ preventScroll: true });
+      } catch (e) {
+        // older browsers may not support options
+        card.focus();
+      }
+    }
+
+    const aboutLink = document.querySelector('a[href="#about"]');
+    if (aboutLink) {
+      aboutLink.addEventListener('click', e => {
+        e.preventDefault();
+        const about = document.getElementById('about');
+        if (about && about.querySelector('.about-card')) {
+          scrollAboutCenter();
+        } else {
+          // wait until about content is inserted
+          const obs = new MutationObserver((mutations, observer) => {
+            if (about.querySelector('.about-card')) {
+              scrollAboutCenter();
+              observer.disconnect();
+            }
+          });
+          obs.observe(about, { childList: true, subtree: true });
         }
-        window.addEventListener("scroll", revealCard);
-        revealCard();
-      })
-      .catch(error => console.error("Error loading about.html:", error));
+      });
+    }
 
-      
+  })
+
+  
+
 fetch("projects.html")
   .then(response => response.text())
   .then(data => {
     document.getElementById("projects").innerHTML = data;
+    // Initialize modal functionality
+    const modal = document.querySelector(".modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-desc");
+    const closeBtn = document.querySelector(".close-btn");
+
+    document.querySelectorAll(".view-btn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        e.preventDefault();
+        const card = e.target.closest(".card");
+        // Scroll the clicked card into the same centered position we use for the Projects link.
+        // Use the same offset (-100) so visual placement matches expectations.
+        try {
+          scrollProjectsCenter(card, -100);
+          // Give the smooth scroll a moment to start/complete visually before showing the modal.
+          setTimeout(() => {
+            modalTitle.textContent = card.getAttribute("data-title");
+            modalDesc.textContent = card.getAttribute("data-description");
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden"; // prevent scroll while modal open
+          }, 420);
+        } catch (err) {
+          // Fallback: open modal immediately if anything goes wrong
+          modalTitle.textContent = card.getAttribute("data-title");
+          modalDesc.textContent = card.getAttribute("data-description");
+          modal.style.display = "flex";
+          document.body.style.overflow = "hidden";
+        }
+      });
+    });
+
+    // No tech toggle needed; tech badges are shown inline in projects.html
+
+    // Center projects grid (or first card) when Projects nav link is clicked
+    // Centers a target project card (or the first grid card) inside the #wrapper.
+    // Optional params:
+    // - targetEl: an Element to center. If omitted the first card / grid is used.
+    // - offsetPx: a vertical offset (positive moves content down, negative moves it up). Default -100.
+    function scrollProjectsCenter(targetEl = null, offsetPx = -100) {
+  const projects = document.getElementById('projects');
+  if (!projects) return;
+  const grid = projects.querySelector('.problem-grid');
+  const target = targetEl || (grid && grid.querySelector('.card')) || grid || projects.querySelector('.card') || projects;
+  if (!target) return;
+
+  // If there is a scrollable wrapper, compute a scrollTop that centers the target inside it.
+  const wrapper = document.getElementById('wrapper') || document.scrollingElement || document.documentElement;
+      try {
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const wrapperScrollTop = wrapper.scrollTop;
+        // distance from wrapper top to target top in pixels (relative to viewport)
+        const offsetTop = targetRect.top - wrapperRect.top;
+        // desired scroll so that target is vertically centered in wrapper
+        const desiredScrollTop = wrapperScrollTop + offsetTop - (wrapper.clientHeight / 2) + (targetRect.height / 2) - offsetPx;
+        wrapper.scrollTo({ top: desiredScrollTop, behavior: 'smooth' });
+  } catch (err) {
+    // fallback to scrollIntoView if something goes wrong
+    target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+  }
+
+  // focus for accessibility
+      try {
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+      } catch (e) {
+        target.focus();
+      }
+    }
+
+    const projectsLink = document.querySelector('a[href="#projects"]');
+    if (projectsLink) {
+      projectsLink.addEventListener('click', e => {
+        e.preventDefault();
+        const projects = document.getElementById('projects');
+        if (projects && projects.querySelector('.problem-grid')) {
+          scrollProjectsCenter();
+        } else {
+          const obsP = new MutationObserver((mutations, observer) => {
+            if (projects.querySelector('.problem-grid')) {
+              scrollProjectsCenter();
+              observer.disconnect();
+            }
+          });
+          obsP.observe(projects, { childList: true, subtree: true });
+        }
+      });
+    }
+
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+    });
+
+    window.addEventListener("click", e => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+    });
   })
   .catch(error => console.error("Error loading projects.html:", error));
 
-  </script>
+</script>
+
 
 
 </body>
