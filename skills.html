@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Skills</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 💡 Skills Roadmap Section -->
+<section class="skills-section" id="skills-roadmap">
+  <div class="roadmap-box">
+    <h1 class="roadmap-title">Skills</h1>
+
+    <div class="roadmap-columns">
+      <div class="roadmap-col phase-card">
+        <p class="phase-number">Build</p>
+        <h2 class="phase-big">Web Development</h2>
+
+        <div class="pill"><span class="pill-dot"></span>HTML, CSS, JavaScript</div>
+        <div class="pill large"><span class="pill-dot"></span>Git, GitHub</div>
+        <div class="pill"><span class="pill-dot"></span>React</div>
+    
+      </div>
+
+      <div class="roadmap-col phase-card">
+        <p class="phase-number">Analyze</p>
+        <h2 class="phase-big">Data & Analytics</h2>
+
+        <div class="pill"><span class="pill-dot"></span>Python, SQL</div>
+        <div class="pill large"><span class="pill-dot"></span>Power BI, Tableau</div>
+        <div class="pill"><span class="pill-dot"></span>Jupyter Notebook</div>
+        
+      </div>
+
+      <div class="roadmap-col phase-card">
+        <p class="phase-number">Innovate</p>
+        <h2 class="phase-big">AI & Cloud</h2>
+
+        <div class="pill"><span class="pill-dot"></span>Azure, GCP, AWS</div>
+        <div class="pill large"><span class="pill-dot"></span>AI Agents, NLP, ML Models</div>
+         <div class="pill"><span class="pill-dot"></span>Streamlit, Azure AI Studio</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Reveal animation on scroll
+  const cards = document.querySelectorAll(".phase-card");
+
+  const revealCards = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    cards.forEach(card => {
+      const top = card.getBoundingClientRect().top;
+      if (top < triggerBottom) {
+        card.classList.add("visible");
+      }
+    });
+  };
+
+  window.addEventListener("scroll", revealCards);
+  window.addEventListener("load", revealCards);
+</script>
+
+</body>
+</html>

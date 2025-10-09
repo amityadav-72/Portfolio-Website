@@ -75,8 +75,33 @@
 
 
 
-  <div id="about"></div>
-  <div id="projects"></div>
+
+  <div class="section-decor before">
+    <div class="curve left"></div>
+    <div class="curve right"></div>
+  </div>
+
+  <div id="about" class="section-with-curves"></div>
+
+  <div class="section-decor between">
+    <div class="curve left"></div>
+    <div class="curve right"></div>
+  </div>
+
+  <div id="skills" class="section-with-curves"></div>
+
+  <div class="section-decor between">
+    <div class="curve left"></div>
+    <div class="curve right"></div>
+  </div>
+
+  <div id="projects" class="section-with-curves"></div>
+
+  <div class="section-decor after">
+    <div class="curve left"></div>
+    <div class="curve right"></div>
+  </div>
+
 
   <!-- Popup Modal -->
   <div class="modal" style="display: none;">
@@ -91,13 +116,7 @@
   <!-- Typed.js Animation -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
-    // Always scroll to top on page load
-    window.addEventListener('load', function() {
-      if (window.location.hash) {
-        window.scrollTo(0, 0);
-        history.replaceState(null, '', window.location.pathname);
-      }
-    });
+    // (removed) previously we forced scroll-to-top on load which prevented restoring hashed navigation on refresh
 
     var typed = new Typed(".dynamic-text", {
       strings: [
@@ -269,6 +288,51 @@ fetch("projects.html")
   })
   .catch(error => console.error("Error loading projects.html:", error));
 
+// Load skills.html into the #skills placeholder and initialize reveal animation
+
+  fetch("skills.html")
+    .then(response => response.text())
+    .then(html => {
+      // Parse and extract only the skills section (avoid injecting full <html>/<head>)
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const skillsSection = doc.querySelector('.skills-section') || doc.body;
+      const target = document.getElementById('skills');
+      if (!target) return;
+
+      // Clear and append the parsed section
+      target.innerHTML = '';
+      target.appendChild(document.importNode(skillsSection, true));
+
+      // Initialize reveal using IntersectionObserver with #wrapper as root (works when wrapper scrolls)
+      const cards = Array.from(target.querySelectorAll('.phase-card'));
+      const wrapper = document.getElementById('wrapper');
+      if ('IntersectionObserver' in window && wrapper) {
+        const obs = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { root: wrapper, threshold: 0.18 });
+        cards.forEach(c => obs.observe(c));
+      } else {
+        // Fallback: simple scroll listener
+        const revealCards = () => {
+          const trigger = window.innerHeight * 0.9;
+          cards.forEach(card => {
+            const top = card.getBoundingClientRect().top;
+            if (top < trigger) card.classList.add('visible');
+          });
+        };
+        const scrollContainer = wrapper || window;
+        scrollContainer.addEventListener('scroll', revealCards);
+        window.addEventListener('resize', revealCards);
+        revealCards();
+      }
+    })
+    .catch(error => console.error('Error loading skills.html:', error));
 </script>
 
 
