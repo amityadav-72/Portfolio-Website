@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Timeline</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section class="timeline-section">
+    <h2 class="timeline-title">My Technical Journey</h2>
+
+    <div class="timeline">
+
+      <!-- Timeline Item 1 -->
+      <div class="timeline-item left">
+        <div class="content">
+          <h3>Started Bachelor of Engineering in   <span>Computer Science & Engineering (CSE)</span></h3>
+          <p>P. R. Pote Patil College of Engineering & Management, Amravati</p>
+         
+        </div>
+        <div class="timeline-date">November 2022</div>
+        <div class="circle"></div>
+      </div>
+
+     <!-- Timeline Item -->
+<div class="timeline-item right">
+  <div class="content">
+    <h3><span>Appointed as Google Cloud Co-Lead at GDSC-PRPCEM</span></h3>
+    <p>Google Developer Student Club P. R. Pote Patil College of Engineering & Management</p>
+    <button class="certificate-btn" data-cert="./Assets/1727109524444.jpeg">View Certificate</button>
+  </div>
+  <div class="timeline-date">July 2023</div>
+  <div class="circle"></div>
+</div>
+
+<!-- Modal (place once, outside timeline) -->
+<div class="certificate-modal" id="certificateModal">
+  <div class="certificate-modal-content">
+    <span class="certificate-close">&times;</span>
+    <img id="certificateFrame" src="" alt="Certificate" style="width:100%;height:auto; max-height:400px;">
+  </div>
+</div>
+        </div>
+        <div class="timeline-date">July 2023</div>
+        <div class="circle"></div>
+      </div>
+
+        <!-- Timeline Item  -->
+      <div class="timeline-item left">
+        <div class="content">
+          <h3><span>Appointed as Google Cloud Co-Lead at GDSC-PRPCEM</span></h3>
+          <p>Google Developer Student Club P. R. Pote Patil College of Engineering & Management</p>
+        </div>
+        <div class="timeline-date">September 2023</div>
+        <div class="circle"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Certificate Modal -->
+  <div class="certificate-modal" id="certificateModal">
+    <div class="certificate-modal-content">
+      <span class="certificate-close">&times;</span>
+      <iframe id="certificateFrame" src="" frameborder="0" style="width:100%;height:400px;"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Timeline animation
+    const items = document.querySelectorAll('.timeline-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    items.forEach(item => observer.observe(item));
+
+    // Certificate modal logic
+    const certBtns = document.querySelectorAll('.certificate-btn');
+    const certModal = document.getElementById('certificateModal');
+    const certFrame = document.getElementById('certificateFrame');
+    const certClose = document.querySelector('.certificate-close');
+
+    certBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        certFrame.src = btn.getAttribute('data-cert');
+        certModal.classList.add('show-jinn');
+      });
+    });
+    certClose.addEventListener('click', function() {
+      certModal.classList.remove('show-jinn');
+      certFrame.src = '';
+    });
+    certModal.addEventListener('click', function(e) {
+      if (e.target === certModal) {
+        certModal.classList.remove('show-jinn');
+        certFrame.src = '';
+      }
+    });
+  </script>
+
+</body>
+</html>

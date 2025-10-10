@@ -903,3 +903,219 @@ body {
 .roadmap-columns .phase-card:nth-child(1) { transition-delay: 0.12s; }
 .roadmap-columns .phase-card:nth-child(2) { transition-delay: 0.28s; }
 .roadmap-columns .phase-card:nth-child(3) { transition-delay: 0.44s; }
+
+
+
+/* ---------- EXPERIENCE SECTION ---------- */
+/* View Certificate Button Styling */
+.certificate-btn {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 22px;
+  background: linear-gradient(90deg,#ff4e6d 0%,#ffb26b 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(255,78,109,0.10);
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.22s;
+  outline: none;
+}
+.certificate-btn:hover {
+  background: linear-gradient(90deg,#ffb26b 0%,#ff4e6d 100%);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(255,78,109,0.18);
+}
+.certificate-btn:active {
+  transform: scale(0.98);
+}
+/* Certificate Modal & Jinn Animation */
+.certificate-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  transition: opacity 0.4s;
+}
+.certificate-modal.show-jinn {
+  display: flex;
+  animation: jinnAppear 0.7s cubic-bezier(.2,.9,.3,1);
+}
+.certificate-modal-content {
+  background: #fff;
+  border-radius: 22px 22px 60px 60px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  padding: 32px 24px 24px 24px;
+  max-width: 600px;
+  width: 90vw;
+  position: relative;
+  transform: scale(0.7) translateY(120px);
+  opacity: 0;
+  animation: jinnBottle 0.7s cubic-bezier(.2,.9,.3,1) forwards;
+}
+.certificate-modal.show-jinn .certificate-modal-content {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.certificate-close {
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  font-size: 2rem;
+  color: #e33b5a;
+  cursor: pointer;
+  z-index: 10;
+}
+@keyframes jinnBottle {
+  0% { opacity: 0; transform: scale(0.7) translateY(120px); }
+  60% { opacity: 1; transform: scale(1.08) translateY(-20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Timeline Section (scoped only - does not reset global styles) */
+/* Section Title */
+.timeline-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.timeline-title {
+  font-size: clamp(1.8rem, 2vw + 1rem, 3rem);
+  margin-bottom: 60px;
+  font-weight: 600;
+}
+
+/* Timeline container */
+.timeline {
+  position: relative;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Vertical line */
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: #ff4e6d;
+  transform: translateX(-50%);
+}
+
+/* Timeline item base */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 30px 40px;
+}
+
+/* Circle */
+.circle {
+  position: absolute;
+  top: 40px;
+  right: -22px;
+  width: clamp(35px, 3vw, 60px);
+  height: clamp(35px, 3vw, 60px);
+  background: #ff4e6d;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 4px rgba(255, 78, 109, 0.2);
+  z-index: 1;
+}
+
+.timeline-item.right .circle {
+  left: -22px;
+  right: auto;
+}
+
+/* Content box */
+.content {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.content h3 {
+  font-size: clamp(1.1rem, 1vw + 0.6rem, 1.4rem);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.content h3 span {
+  color: #ff4e6d;
+}
+
+.content p {
+  font-size: clamp(0.9rem, 0.8vw + 0.4rem, 1rem);
+  line-height: 1.5;
+  color: #444;
+}
+
+/* Date label */
+.timeline-date {
+  position: absolute;
+  top: 45px;
+  font-weight: 500;
+  color: #555;
+  font-size: clamp(0.9rem, 0.8vw + 0.4rem, 1rem);
+}
+
+.timeline-item.left .timeline-date {
+  right: -180px;
+}
+
+.timeline-item.right .timeline-date {
+  left: -180px;
+}
+
+/* Left and right alignment */
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .timeline::after {
+    left: 25px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    text-align: left;
+  }
+
+  .timeline-item.right {
+    left: 0;
+  }
+
+  .timeline-item.left .timeline-date,
+  .timeline-item.right .timeline-date {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-bottom: 10px;
+  }
+
+  .circle {
+    left: 20px;
+    right: auto;
+  }
+}
