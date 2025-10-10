@@ -18,30 +18,16 @@
         <div class="content">
           <h3>Started Bachelor of Engineering in   <span>Computer Science & Engineering (CSE)</span></h3>
           <p>P. R. Pote Patil College of Engineering & Management, Amravati</p>
-         
         </div>
         <div class="timeline-date">November 2022</div>
         <div class="circle"></div>
       </div>
 
-     <!-- Timeline Item -->
-<div class="timeline-item right">
-  <div class="content">
-    <h3><span>Appointed as Google Cloud Co-Lead at GDSC-PRPCEM</span></h3>
-    <p>Google Developer Student Club P. R. Pote Patil College of Engineering & Management</p>
-    <button class="certificate-btn" data-cert="./Assets/1727109524444.jpeg">View Certificate</button>
-  </div>
-  <div class="timeline-date">July 2023</div>
-  <div class="circle"></div>
-</div>
-
-<!-- Modal (place once, outside timeline) -->
-<div class="certificate-modal" id="certificateModal">
-  <div class="certificate-modal-content">
-    <span class="certificate-close">&times;</span>
-    <img id="certificateFrame" src="" alt="Certificate" style="width:100%;height:auto; max-height:400px;">
-  </div>
-</div>
+      <!-- Timeline Item 2 -->
+      <div class="timeline-item right">
+        <div class="content">
+          <h3><span>Appointed as Google Cloud Co-Lead at GDSC-PRPCEM</span></h3>
+          <p>Google Developer Student Club P. R. Pote Patil College of Engineering & Management</p>
         </div>
         <div class="timeline-date">July 2023</div>
         <div class="circle"></div>
@@ -50,10 +36,10 @@
         <!-- Timeline Item  -->
       <div class="timeline-item left">
         <div class="content">
-          <h3><span>Appointed as Google Cloud Co-Lead at GDSC-PRPCEM</span></h3>
-          <p>Google Developer Student Club P. R. Pote Patil College of Engineering & Management</p>
+          <h3><span>Appointed as GFG Campus Mantri</span></h3>
+          <p>P. R. Pote Patil College of Engineering & Management</p>
         </div>
-        <div class="timeline-date">September 2023</div>
+        <div class="timeline-date">June 2024</div>
         <div class="circle"></div>
       </div>
 
@@ -81,28 +67,7 @@
     }, { threshold: 0.2 });
     items.forEach(item => observer.observe(item));
 
-    // Certificate modal logic
-    const certBtns = document.querySelectorAll('.certificate-btn');
-    const certModal = document.getElementById('certificateModal');
-    const certFrame = document.getElementById('certificateFrame');
-    const certClose = document.querySelector('.certificate-close');
-
-    certBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        certFrame.src = btn.getAttribute('data-cert');
-        certModal.classList.add('show-jinn');
-      });
-    });
-    certClose.addEventListener('click', function() {
-      certModal.classList.remove('show-jinn');
-      certFrame.src = '';
-    });
-    certModal.addEventListener('click', function(e) {
-      if (e.target === certModal) {
-        certModal.classList.remove('show-jinn');
-        certFrame.src = '';
-      }
-    });
+    
   </script>
 
 </body>
