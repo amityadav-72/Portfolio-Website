@@ -103,6 +103,7 @@
     <div class="curve right"></div>
   </div>
 
+  
 
   <!-- Popup Modal -->
   <div class="modal" style="display: none;">
@@ -114,6 +115,9 @@
     </div>
   </div>
     <div id="experience" class="section-with-curves"></div>
+
+    <div id="certifications"></div>
+
 
   <!-- Typed.js Animation -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
@@ -361,6 +365,44 @@ fetch("projects.html")
     }
   });
 
+
+fetch("certifications.html")
+  .then(response => response.text())
+  .then(data => {
+    const container = document.getElementById("certifications");
+    container.innerHTML = data;
+
+    const filterButtons = container.querySelectorAll(".filter-btn");
+    const certCards = Array.from(container.querySelectorAll(".cert-card"));
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        container.querySelector(".filter-btn.active")?.classList.remove("active");
+        button.classList.add("active");
+
+        const category = button.dataset.category.trim().toLowerCase();
+
+        // Clear container and re-append filtered cards
+        certCards.forEach((card) => card.style.display = "none"); // hide all first
+
+        const filteredCards = certCards.filter(card => {
+          const cardCategory = card.dataset.category.trim().toLowerCase();
+          return category === "all" || cardCategory === category;
+        });
+
+        filteredCards.forEach(card => {
+          card.style.display = "block";
+          container.appendChild(card); // move card to container (reorder)
+        });
+      });
+    });
+  })
+  .catch(error => console.error("Error loading certifications:", error));
+
+
+
+
+  
 
 </script>
 

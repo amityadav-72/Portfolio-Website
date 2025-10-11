@@ -1064,3 +1064,143 @@ body {
 
 
 
+/* ---------- CERTIFICATIONS SECTION ---------- */
+ /* ------------------ Section Styling ------------------ */
+    .certifications-section {
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+      text-align: center;
+      color: #e6eef8;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 2.5vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 40px;
+      background: linear-gradient(90deg, #38bdf8, #7dd3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* ------------------ Filter Buttons ------------------ */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 50px;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 2px solid #38bdf8;
+      color: #38bdf8;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filter-btn::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      background: #38bdf8;
+      z-index: -1;
+      transition: width 0.4s ease;
+    }
+
+    .filter-btn:hover::before { width: 100%; }
+    .filter-btn:hover { color: #0f172a; transform: scale(1.05); }
+    .filter-btn.active { background: #38bdf8; color: #0f172a; }
+
+    /* ------------------ Grid ------------------ */
+    .certifications-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 35px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* ------------------ Certificate Cards ------------------ */
+    .cert-card {
+      background: #1e293b;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      transform: scale(1);
+      opacity: 1;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      display: block; /* default, controlled by JS when hiding */
+    }
+
+    .cert-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .cert-card:hover img { transform: scale(1.06); }
+
+    .cert-info {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .cert-info h4 {
+      font-size: 1.1rem;
+      margin: 8px 0 4px;
+      color: #fff;
+    }
+
+    .cert-info p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+
+    /* view overlay */
+    .cert-card a { position: relative; display: block; }
+    .view-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #0f172a;
+      background: rgba(56,189,248,0.9);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      text-decoration: none;
+    }
+    .cert-card:hover .view-overlay { opacity: 1; transform: translateY(0); }
+
+    /* ------------------ Hide class for animation (no immediate display:none) ------------------ */
+    .cert-card.hide {
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+    }
+
+    /* ------------------ Responsive ------------------ */
+    @media (max-width: 768px) {
+      .filter-buttons { gap: 10px; }
+      .filter-btn { font-size: 0.9rem; padding: 8px 16px; }
+      .cert-card img { height: 200px; }
+      .certifications-section { padding: 60px 16px; }
+    }
