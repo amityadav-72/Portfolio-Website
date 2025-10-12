@@ -182,7 +182,7 @@ fetch("about.html")
         }
       });
     }
-
+    window.location.hash = "#about";
   })
 
   
@@ -201,8 +201,6 @@ fetch("projects.html")
       btn.addEventListener("click", e => {
         e.preventDefault();
         const card = e.target.closest(".card");
-        // Scroll the clicked card into the same centered position we use for the Projects link.
-        // Use the same offset (-100) so visual placement matches expectations.
         try {
           scrollProjectsCenter(card, -100);
           // Give the smooth scroll a moment to start/complete visually before showing the modal.
@@ -222,13 +220,7 @@ fetch("projects.html")
       });
     });
 
-    // No tech toggle needed; tech badges are shown inline in projects.html
-
-    // Center projects grid (or first card) when Projects nav link is clicked
-    // Centers a target project card (or the first grid card) inside the #wrapper.
-    // Optional params:
-    // - targetEl: an Element to center. If omitted the first card / grid is used.
-    // - offsetPx: a vertical offset (positive moves content down, negative moves it up). Default -100.
+   
     function scrollProjectsCenter(targetEl = null, offsetPx = -100) {
   const projects = document.getElementById('projects');
   if (!projects) return;
@@ -291,6 +283,7 @@ fetch("projects.html")
         document.body.style.overflow = "auto";
       }
     });
+    window.location.hash = "#projects";
   })
   .catch(error => console.error("Error loading projects.html:", error));
 
@@ -372,33 +365,41 @@ fetch("certifications.html")
     const container = document.getElementById("certifications");
     container.innerHTML = data;
 
+    // Get the grid container that holds all cards
+    const grid = container.querySelector(".certifications-container");
     const filterButtons = container.querySelectorAll(".filter-btn");
     const certCards = Array.from(container.querySelectorAll(".cert-card"));
 
     filterButtons.forEach((button) => {
       button.addEventListener("click", () => {
+        // Switch active button
         container.querySelector(".filter-btn.active")?.classList.remove("active");
         button.classList.add("active");
 
         const category = button.dataset.category.trim().toLowerCase();
 
-        // Clear container and re-append filtered cards
-        certCards.forEach((card) => card.style.display = "none"); // hide all first
+        // Hide all cards first (add .hide class for animation)
+        certCards.forEach((card) => card.classList.add("hide"));
 
-        const filteredCards = certCards.filter(card => {
+        // Filter visible cards
+        const filteredCards = certCards.filter((card) => {
           const cardCategory = card.dataset.category.trim().toLowerCase();
           return category === "all" || cardCategory === category;
         });
 
-        filteredCards.forEach(card => {
-          card.style.display = "block";
-          container.appendChild(card); // move card to container (reorder)
-        });
+        // Wait for hide animation, then show filtered cards
+        setTimeout(() => {
+          certCards.forEach(card => card.style.display = "none");
+          filteredCards.forEach(card => {
+            card.style.display = "block";
+            card.classList.remove("hide");
+            grid.appendChild(card); // maintain order inside grid
+          });
+        }, 300); // matches your transition time in CSS
       });
     });
   })
   .catch(error => console.error("Error loading certifications:", error));
-
 
 
 
