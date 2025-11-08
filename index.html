@@ -26,6 +26,15 @@
           <div><a href="#certifications">Certifications</a></div>
           <div><a href="#contact">Contact</a></div>
         </div>
+
+
+         <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+
       </div>
     </div>
 
@@ -140,6 +149,24 @@
       showCursor: true,
       cursorChar: "|"
     });
+
+
+     // ✅ Hamburger toggle
+  const hamburger = document.getElementById("hamburger");
+  const navItems = document.querySelector(".nav-items");
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navItems.classList.toggle("show");
+  });
+
+  // ✅ Close the menu when a link is clicked
+  document.querySelectorAll(".nav-items a").forEach(link => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navItems.classList.remove("show");
+    });
+  });
 
 
 fetch("about.html")
