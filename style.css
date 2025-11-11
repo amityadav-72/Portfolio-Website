@@ -17,7 +17,7 @@
 
 body {
   font-family: 'Be Vietnam Pro', sans-serif;
-  background-color: #f7f3f7;
+  background-color: #fef7f7;
   color: #222;
 }
 
@@ -25,7 +25,7 @@ body {
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-top: 96px; /* Prevent content from hiding behind navbar */
+  padding-top: 96px; 
 }
 
 /* ---------- CONTAINER ---------- */
@@ -997,13 +997,38 @@ body {
 
 
 /* 💡 Skills Roadmap Section */
-/* === Skills Section Styling === */
+/* ===================== SKILLS SECTION ===================== */
 .skills-section {
-  padding: 80px 10%;
-  background: #f9fafc;
+  position: relative;
+  padding: 100px 10%;
   text-align: center;
   font-family: 'Be Vietnam Pro', sans-serif;
+  color: #fff;
+  background: #ffeff1;
+  overflow: hidden;
+  z-index: 1;
+
+  /* 🌊 Curved edges (both top + bottom, both sides) */
+  border-top-left-radius: 120px;
+  border-top-right-radius: 120px;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+
+  /* Optional shadow for depth */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
+
+/* smooth transition into next section (white fade) */
+.skills-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 2;
+}
+
 
 /* Section decorative curves */
 .page-band {
@@ -1485,14 +1510,88 @@ body {
       }
     }
 
+    /* ===================== TIMELINE SECTION WITH CURVES ===================== */
+section#timeline-section {
+  position: relative;
+  background-color: #ffeff1; /* 🎨 Choose your solid background */
+  padding: 100px 20px;
+  border-top-left-radius: 120px;
+  border-top-right-radius: 120px;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  z-index: 1;
+}
+
+/* Smooth fade to blend into next and previous sections */
+section#timeline-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 2;
+}
+
+section#timeline-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 2;
+  
+}
+
+/* ===================== RESPONSIVE CURVES ===================== */
+@media (max-width: 768px) {
+  section#timeline-section {
+    border-top-left-radius: 80px;
+    border-top-right-radius: 80px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    padding: 80px 20px;
+  }
+}
+
+
 
 /* ---------- CERTIFICATIONS SECTION ---------- */
  /* ------------------ Section Styling ------------------ */
 .certifications-section {
+  position: relative;
   padding: 100px 20px;
-  background: linear-gradient(to bottom, #fff8f9, #fcfaff);
+  background-color: #FFFFFF; /* ✅ Solid blue background */
   text-align: center;
-  color: #1a1a1a;
+  color: #fff;
+  overflow: hidden;
+
+
+}
+
+/* Fade to white above */
+.certifications-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to top, rgba(28, 85, 198, 0) 0%, #fff 100%);
+}
+
+.certifications-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(28, 85, 198, 0) 0%, #fff 100%);
+  z-index: 2;
 }
 
 /* ------------------ Section Title ------------------ */
@@ -1500,6 +1599,7 @@ body {
   font-size: clamp(2rem, 2.5vw, 2.8rem);
   font-weight: 700;
   margin-bottom: 40px;
+  background-color: #FFFFFF;
   background: linear-gradient(90deg, #e10c5d, #f9681c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1664,18 +1764,21 @@ body {
 
 
    /* ========== CONTACT SECTION ========== */
-
+/* ===================== GLOBAL ===================== */
 body {
   background: #FFFFFF;
+  font-family: "Be Vietnam Pro", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+/* ===================== CONTACT SECTION ===================== */
 .contact-section {
   position: relative;
   background: linear-gradient(135deg, #f8b9c0 0%, #f6a3ad 100%);
   padding: 120px 20px 100px;
-  text-align: center;
   color: #1a1a1a;
-  overflow: hidden; 
+  overflow: hidden;
   z-index: 2;
   margin-top: 0;
   border-top-left-radius: 120px;
@@ -1683,14 +1786,8 @@ body {
   border-bottom-left-radius: 100px;
   border-bottom-right-radius: 100px;
   box-shadow: none;
+  text-align: center;
 }
-
-
-.contact-container {
-  position: relative;
-  z-index: 3;
-}
-
 
 .contact-title {
   font-size: 2.5rem;
@@ -1699,16 +1796,80 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 15px;
+  text-align: center;
 }
 
 .contact-subtitle {
   font-size: 1.1rem;
   color: #555;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
+  text-align: center;
 }
 
-/* ----------- Form ----------- */
+/* ===================== CONTAINER LAYOUT ===================== */
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 30px;
+  padding: 60px 50px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 3;
+  text-align: left;
+}
+
+/* ===================== LEFT SIDE ===================== */
+.contact-info {
+  flex: 1;
+  min-width: 320px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  background: #fff8f9;
+  border-radius: 12px;
+  padding: 12px 18px;
+  box-shadow: 0 2px 8px rgba(247, 70, 112, 0.1);
+}
+
+.info-item i {
+  font-size: 1.6rem;
+  color: #f74670;
+  margin-right: 15px;
+}
+
+.info-item h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.info-item p {
+  margin: 3px 0 0;
+  color: #555;
+}
+
+.social-links {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ===================== RIGHT SIDE FORM ===================== */
 .contact-form {
+  flex: 1;
+  min-width: 320px;
   text-align: left;
 }
 
@@ -1757,17 +1918,7 @@ textarea:focus {
   box-shadow: 0 8px 20px rgba(247, 70, 112, 0.3);
 }
 
-/* ----------- Social Links ----------- */
-.social-links {
-  margin-top: 60px;
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-  position: relative;
-}
-
-/* Base icon styling */
+/* ===================== SOCIAL ICONS ===================== */
 .social-icon {
   width: 55px;
   height: 55px;
@@ -1784,7 +1935,6 @@ textarea:focus {
   box-shadow: 0 4px 10px rgba(247, 70, 112, 0.25);
 }
 
-/* Animated glowing border on hover */
 .social-icon::before {
   content: "";
   position: absolute;
@@ -1803,13 +1953,11 @@ textarea:focus {
   filter: blur(8px);
 }
 
-/* Icon scaling + lift on hover */
 .social-icon:hover {
   transform: translateY(-8px) scale(1.08);
   box-shadow: 0 12px 25px rgba(247, 70, 112, 0.4);
 }
 
-/* Icon inner glow */
 .social-icon i {
   position: relative;
   z-index: 1;
@@ -1820,72 +1968,182 @@ textarea:focus {
   transform: scale(1.15) rotate(5deg);
 }
 
-/* Individual hover colors */
-.github:hover {
-  background: #24292e;
-}
-.linkedin:hover {
-  background: #0077b5;
-}
-.gmail:hover {
-  background: #d93025;
-}
-.twitter:hover {
-  background: #1da1f2;
-}
+/* Hover Colors */
+.github:hover { background: #24292e; }
+.linkedin:hover { background: #0077b5; }
+.gmail:hover { background: #d93025; }
+.twitter:hover { background: #1da1f2; }
 
-/* Entrance animation (fade-up) */
-@keyframes popUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Apply staggered animation */
-.social-links a:nth-child(1) {
-  animation: popUp 0.6s ease-out 0.1s forwards;
-  opacity: 0;
-}
-.social-links a:nth-child(2) {
-  animation: popUp 0.6s ease-out 0.3s forwards;
-  opacity: 0;
-}
-.social-links a:nth-child(3) {
-  animation: popUp 0.6s ease-out 0.5s forwards;
-  opacity: 0;
-}
-.social-links a:nth-child(4) {
-  animation: popUp 0.6s ease-out 0.7s forwards;
-  opacity: 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .social-links {
-    gap: 18px;
-  }
-
-  .social-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-  }
-}
-
+/* Animation Glow */
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 0 10px rgba(247, 70, 112, 0.25); }
   50% { box-shadow: 0 0 20px rgba(247, 70, 112, 0.4); }
 }
-
 .social-icon {
   animation: pulseGlow 3s infinite ease-in-out;
 }
 
+
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+    padding: 40px 25px;
+  }
+
+  .contact-info, .contact-form {
+    width: 100%;
+  }
+
+  .contact-info {
+    text-align: center;
+  }
+
+  .info-item {
+    justify-content: center;
+  }
+
+  .contact-subtitle {
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 700px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .contact-section {
+    padding: 80px 12px 80px;
+    border-top-left-radius: 90px;
+    border-top-right-radius: 90px;
+    border-bottom-left-radius: 70px;
+    border-bottom-right-radius: 70px;
+    box-sizing: border-box;
+  }
+
+  .contact-container {
+    width: 100%;
+    max-width: 96%;
+    margin: 0 auto;
+    padding: 35px 25px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #fff;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .contact-section {
+    padding: 70px 10px 70px;
+    border-top-left-radius: 85px;
+    border-top-right-radius: 85px;
+    border-bottom-left-radius: 65px;
+    border-bottom-right-radius: 65px;
+    box-sizing: border-box;
+  }
+
+  .contact-container {
+    width: 100%;
+    max-width: 96%;
+    margin: 0 auto;
+    padding: 35px 22px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .contact-info, 
+  .contact-form {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .contact-title {
+    font-size: 1.8rem;
+  }
+
+  .contact-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
+
+  .info-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 18px;
+  }
+
+  .info-item i {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+  }
+
+  input,
+  textarea {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+
+  .btn {
+    font-size: 0.85rem;
+    padding: 10px 24px;
+  }
+}
+
+@media (max-width: 350px) {
+  .contact-section {
+    padding: 65px 8px 65px;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+
+  .contact-container {
+    width: 100%;
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 25px 16px;
+    border-radius: 20px;
+    background: #fff;
+  }
+
+  .contact-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 30px;
+  }
+
+  .info-item {
+    padding: 8px 6px;
+  }
+
+  input,
+  textarea {
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    padding: 9px 18px;
+  }
+}
 
 
 /* ========== FOOTER SECTION ========== */
@@ -1960,11 +2218,6 @@ textarea:focus {
 .footer-icon:nth-child(3) { animation: floatIcons 5s ease-in-out infinite; }
 .footer-icon:nth-child(4) { animation: floatIcons 4.3s ease-in-out infinite; }
 
-/* ======================================================
-   ✅ MEDIA QUERIES — Optimized for All Screens
-   ====================================================== */
-
-/* --- Large Tablets / Small Laptops (<= 1024px) --- */
 @media (max-width: 1024px) {
   .footer {
     padding: 35px 20px;
