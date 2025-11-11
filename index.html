@@ -124,9 +124,35 @@
     </div>
   </div>
     <div id="experience" class="section-with-curves"></div>
-
+ <section id="timeline-section"></section>
     <div id="certifications"></div>
     <section id="contact"></section>
+
+    <!-- ================= Footer Section ================= -->
+<footer class="footer">
+  <div class="footer-container">
+    <p>© 2025 Amit Kumar Yadav | All Rights Reserved</p>
+
+    <div class="footer-socials">
+      <a href="https://www.linkedin.com/in/amityadav72" target="_blank" class="footer-icon linkedin" title="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://github.com/amityadav72" target="_blank" class="footer-icon github" title="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:988981amityadav@gmail.com" class="footer-icon gmail" title="Email">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://twitter.com/" target="_blank" class="footer-icon twitter" title="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/4b0a8b5c1a.js" crossorigin="anonymous"></script>
+
 
 
   <!-- Typed.js Animation -->
@@ -361,13 +387,13 @@ fetch("projects.html")
     })
     .catch(error => console.error('Error loading skills.html:', error));
 
-    fetch("experience.html")
+    fetch("timeline.html")
   .then(response => response.text())
   .then(data => {
-    const target = document.getElementById("experience");
+    const target = document.getElementById("timeline-section");
     target.innerHTML = data;
 
-    // Wait a bit for the content to render
+    // Wait for DOM insertion
     setTimeout(() => {
       const wrapper = document.getElementById('wrapper');
       const items = target.querySelectorAll('.timeline-item');
@@ -376,7 +402,7 @@ fetch("projects.html")
         const tObs = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('show'); // Use .show class, not .active
+              entry.target.classList.add('show');
               obs.unobserve(entry.target);
             }
           });
@@ -384,12 +410,18 @@ fetch("projects.html")
 
         items.forEach(i => tObs.observe(i));
       } else {
-        // Fallback if IntersectionObserver is not supported
+        // fallback
         items.forEach(i => setTimeout(() => i.classList.add('show'), 120));
       }
-    }, 100); // small delay to ensure DOM insertion
+
+      // Reinitialize AOS (if you're using it in timeline.html)
+      if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 1000, once: true });
+      }
+    }, 100);
   })
-  .catch(err => console.error("Failed to load experience section:", err));
+  .catch(err => console.error("Failed to load timeline section:", err));
+
 
 
 

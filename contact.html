@@ -5,14 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Me</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome for social icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 </head>
 <body>
 
   <section class="contact-section" id="contact">
     <div class="contact-container">
       <h2 class="contact-title">Get in Touch</h2>
-      <p class="contact-subtitle">Have a question or want to work together? Fill out the form below.</p>
+      <p class="contact-subtitle">
+        Have a question or want to work together? Fill out the form below or connect through my social handles.
+      </p>
 
+      <!-- Contact Form -->
       <form id="contactForm" class="contact-form">
         <div class="form-group">
           <label for="name">Your Name</label>
@@ -32,9 +40,31 @@
         <button type="submit" class="btn">Send Message</button>
         <p id="formMessage" class="form-message"></p>
       </form>
-    </div>
+
   </section>
 
-  <script src="contact.js"></script>
+
+  <script>
+  // Animate social icons when visible
+  const contactSection = document.querySelector(".contact-section");
+  const socials = document.querySelectorAll(".social-links a");
+
+  function animateSocials() {
+    const trigger = window.innerHeight * 0.85;
+    const top = contactSection.getBoundingClientRect().top;
+
+    if (top < trigger) {
+      socials.forEach((link, i) => {
+        link.style.animationDelay = `${0.1 + i * 0.2}s`;
+        link.style.animationPlayState = "running";
+      });
+      window.removeEventListener("scroll", animateSocials);
+    }
+  }
+
+  window.addEventListener("scroll", animateSocials);
+  window.addEventListener("load", animateSocials);
+</script>
+
 </body>
 </html>
