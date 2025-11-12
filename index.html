@@ -17,7 +17,7 @@
       <div class="container">
         <div class="navbar">
           <div class="logo-container">
-            <img src="./Assets/A.png" class="logo" alt="Logo">
+            <img src="https://portfolioimage.blob.core.windows.net/images/A.png" class="logo" alt="Logo">
             <div class="logo-text">mit Kumar Yadav</div>
           </div>
 
@@ -62,22 +62,22 @@
 
         <div class="hero-section-right">
           <div class="absolute icons icon-dots">
-            <img src="./Assets/dots.png" alt="" />
+            <img src="https://portfolioimage.blob.core.windows.net/images/dots.png" alt="" />
           </div>
           <div class="absolute icons icon-cube">
-            <img src="./Assets/cube.png" alt="" />
+            <img src="https://portfolioimage.blob.core.windows.net/images/cube.png" alt="" />
           </div>
           <div class="absolute icons icon-circle">
-            <img src="./Assets/circle.png" alt="" />
+            <img src="https://portfolioimage.blob.core.windows.net/images/circle.png" alt="" />
           </div>
           <div class="absolute icons icon-zigzag">
-            <img src="./Assets/zigzags.png" alt="" />
+            <img src="https://portfolioimage.blob.core.windows.net/images/zigzags.png" alt="" />
           </div>
           <div class="absolute icons icon-plus">
-            <img src="./Assets/plus.png" alt="" />
+            <img src="https://portfolioimage.blob.core.windows.net/images/plus.png" alt="" />
           </div>
           <div class="user-image">
-            <img src="./Assets/Amit1.jpeg" alt="" />
+            <img src="https://portfolioimage.blob.core.windows.net/images/Amit1.jpeg" alt="" />
           </div>
         </div>
       </div>
@@ -105,13 +105,28 @@
         <p>© 2025 Amit Kumar Yadav | All Rights Reserved</p>
         <div class="footer-socials">
           <a href="https://www.linkedin.com/in/amityadav72" target="_blank" class="footer-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/amityadav72" target="_blank" class="footer-icon github"><i class="fab fa-github"></i></a>
+          <a href="https://github.com/amityadav-72" target="_blank" class="footer-icon github"><i class="fab fa-github"></i></a>
           <a href="mailto:988981amityadav@gmail.com" class="footer-icon gmail"><i class="fas fa-envelope"></i></a>
-          <a href="https://twitter.com/" target="_blank" class="footer-icon twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://x.com/Amitkum68386498" target="_blank" class="footer-icon twitter"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
     </footer>
   </div>
+
+<div id="projects"></div>
+
+  <!-- Global Modal -->
+  <div class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+
+ 
+
+
 </body>
 
 
@@ -123,7 +138,7 @@
   <!-- Typed.js Animation -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
-    // (removed) previously we forced scroll-to-top on load which prevented restoring hashed navigation on refresh
+
 
     var typed = new Typed(".dynamic-text", {
       strings: [
@@ -142,7 +157,7 @@
     });
 
 
-     // ✅ Hamburger toggle
+ 
   const hamburger = document.getElementById("hamburger");
   const navItems = document.querySelector(".nav-items");
 
@@ -151,7 +166,7 @@
     navItems.classList.toggle("show");
   });
 
-  // ✅ Close the menu when a link is clicked
+
   document.querySelectorAll(".nav-items a").forEach(link => {
     link.addEventListener("click", () => {
       hamburger.classList.remove("active");
@@ -165,19 +180,19 @@ fetch("about.html")
   .then(data => {
     document.getElementById("about").innerHTML = data;
 
-    // When clicking the About nav link, scroll the about card to the center of the viewport
+    
     function scrollAboutCenter() {
       const about = document.getElementById('about');
       if (!about) return;
       const card = about.querySelector('.about-card') || about;
-      // Use scrollIntoView so it scrolls the nearest scrollable ancestor (the #wrapper)
+     
       card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-      // focus for accessibility (preventScroll true to avoid jumping)
+      
       try {
         card.setAttribute('tabindex', '-1');
         card.focus({ preventScroll: true });
       } catch (e) {
-        // older browsers may not support options
+        
         card.focus();
       }
     }
@@ -190,7 +205,7 @@ fetch("about.html")
         if (about && about.querySelector('.about-card')) {
           scrollAboutCenter();
         } else {
-          // wait until about content is inserted
+
           const obs = new MutationObserver((mutations, observer) => {
             if (about.querySelector('.about-card')) {
               scrollAboutCenter();
@@ -210,7 +225,7 @@ fetch("projects.html")
   .then(response => response.text())
   .then(data => {
     document.getElementById("projects").innerHTML = data;
-    // Initialize modal functionality
+    
     const modal = document.querySelector(".modal");
     const modalTitle = document.getElementById("modal-title");
     const modalDesc = document.getElementById("modal-desc");
@@ -222,15 +237,15 @@ fetch("projects.html")
         const card = e.target.closest(".card");
         try {
           scrollProjectsCenter(card, -100);
-          // Give the smooth scroll a moment to start/complete visually before showing the modal.
+        
           setTimeout(() => {
             modalTitle.textContent = card.getAttribute("data-title");
             modalDesc.textContent = card.getAttribute("data-description");
             modal.style.display = "flex";
-            document.body.style.overflow = "hidden"; // prevent scroll while modal open
+            document.body.style.overflow = "hidden"; 
           }, 420);
         } catch (err) {
-          // Fallback: open modal immediately if anything goes wrong
+          
           modalTitle.textContent = card.getAttribute("data-title");
           modalDesc.textContent = card.getAttribute("data-description");
           modal.style.display = "flex";
@@ -247,23 +262,23 @@ fetch("projects.html")
   const target = targetEl || (grid && grid.querySelector('.card')) || grid || projects.querySelector('.card') || projects;
   if (!target) return;
 
-  // If there is a scrollable wrapper, compute a scrollTop that centers the target inside it.
+
   const wrapper = document.getElementById('wrapper') || document.scrollingElement || document.documentElement;
       try {
         const wrapperRect = wrapper.getBoundingClientRect();
         const targetRect = target.getBoundingClientRect();
         const wrapperScrollTop = wrapper.scrollTop;
-        // distance from wrapper top to target top in pixels (relative to viewport)
+    
         const offsetTop = targetRect.top - wrapperRect.top;
-        // desired scroll so that target is vertically centered in wrapper
+       
         const desiredScrollTop = wrapperScrollTop + offsetTop - (wrapper.clientHeight / 2) + (targetRect.height / 2) - offsetPx;
         wrapper.scrollTo({ top: desiredScrollTop, behavior: 'smooth' });
   } catch (err) {
-    // fallback to scrollIntoView if something goes wrong
+ 
     target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
   }
 
-  // focus for accessibility
+
       try {
         target.setAttribute('tabindex', '-1');
         target.focus({ preventScroll: true });
@@ -306,23 +321,23 @@ fetch("projects.html")
   })
   .catch(error => console.error("Error loading projects.html:", error));
 
-// Load skills.html into the #skills placeholder and initialize reveal animation
+
 
   fetch("skills.html")
     .then(response => response.text())
     .then(html => {
-      // Parse and extract only the skills section (avoid injecting full <html>/<head>)
+    
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
       const skillsSection = doc.querySelector('.skills-section') || doc.body;
       const target = document.getElementById('skills');
       if (!target) return;
 
-      // Clear and append the parsed section
+      
       target.innerHTML = '';
       target.appendChild(document.importNode(skillsSection, true));
 
-      // Initialize reveal using IntersectionObserver with #wrapper as root (works when wrapper scrolls)
+      
       const cards = Array.from(target.querySelectorAll('.phase-card'));
       const wrapper = document.getElementById('wrapper');
       if ('IntersectionObserver' in window && wrapper) {
@@ -336,7 +351,7 @@ fetch("projects.html")
         }, { root: wrapper, threshold: 0.18 });
         cards.forEach(c => obs.observe(c));
       } else {
-        // Fallback: simple scroll listener
+
         const revealCards = () => {
           const trigger = window.innerHeight * 0.9;
           cards.forEach(card => {
@@ -358,7 +373,7 @@ fetch("projects.html")
     const target = document.getElementById("timeline-section");
     target.innerHTML = data;
 
-    // Wait for DOM insertion
+
     setTimeout(() => {
       const wrapper = document.getElementById('wrapper');
       const items = target.querySelectorAll('.timeline-item');
@@ -375,11 +390,11 @@ fetch("projects.html")
 
         items.forEach(i => tObs.observe(i));
       } else {
-        // fallback
+
         items.forEach(i => setTimeout(() => i.classList.add('show'), 120));
       }
 
-      // Reinitialize AOS (if you're using it in timeline.html)
+
       if (typeof AOS !== 'undefined') {
         AOS.init({ duration: 1000, once: true });
       }
@@ -396,37 +411,37 @@ fetch("certifications.html")
     const container = document.getElementById("certifications");
     container.innerHTML = data;
 
-    // Get the grid container that holds all cards
+
     const grid = container.querySelector(".certifications-container");
     const filterButtons = container.querySelectorAll(".filter-btn");
     const certCards = Array.from(container.querySelectorAll(".cert-card"));
 
     filterButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        // Switch active button
+    
         container.querySelector(".filter-btn.active")?.classList.remove("active");
         button.classList.add("active");
 
         const category = button.dataset.category.trim().toLowerCase();
 
-        // Hide all cards first (add .hide class for animation)
+       
         certCards.forEach((card) => card.classList.add("hide"));
 
-        // Filter visible cards
+      
         const filteredCards = certCards.filter((card) => {
           const cardCategory = card.dataset.category.trim().toLowerCase();
           return category === "all" || cardCategory === category;
         });
 
-        // Wait for hide animation, then show filtered cards
+    
         setTimeout(() => {
           certCards.forEach(card => card.style.display = "none");
           filteredCards.forEach(card => {
             card.style.display = "block";
             card.classList.remove("hide");
-            grid.appendChild(card); // maintain order inside grid
+            grid.appendChild(card); 
           });
-        }, 300); // matches your transition time in CSS
+        }, 300); 
       });
     });
   })
@@ -435,10 +450,10 @@ fetch("certifications.html")
 fetch("contact.html")
   .then(response => response.text())
   .then(data => {
-    const container = document.getElementById("contact"); // ✅ load into contact section
+    const container = document.getElementById("contact"); 
     container.innerHTML = data;
 
-    // form event listener inside the fetched content
+ 
     const form = container.querySelector("#contactForm");
     const formMessage = container.querySelector("#formMessage");
 

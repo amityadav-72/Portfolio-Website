@@ -1,4 +1,4 @@
-// Add simple scroll highlight for nav links
+
 window.addEventListener('scroll', () => {
   const navbar = document.querySelector('.navbar');
   if (window.scrollY > 50) {

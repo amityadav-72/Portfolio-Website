@@ -857,6 +857,7 @@ body {
   color: #fff;
   border-radius: 10px;
   text-decoration: none;
+  margin-top: 10px;
   font-weight: 700;
   font-size: 0.95rem;
   box-shadow: 0 6px 18px rgba(227,59,90,0.18);
@@ -1387,6 +1388,55 @@ body {
       color: #666;
       font-weight: 600;
     }
+
+  /* ===== View Certificate Link (Text Style) ===== */
+/* ===== Elegant Accent Link (Matching Timeline Color) ===== */
+.view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.95rem;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.view-btn::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+.view-btn:hover::after {
+  width: 100%;
+}
+
+.view-btn span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.view-btn:hover span {
+  transform: translateX(5px);
+}
+
+.view-btn:hover {
+  color: var(--accent);
+  text-shadow: none; /* ensures no glow or shadow */
+}
+
+
+
 
     /* ===== Responsive Design ===== */
 
