@@ -39,49 +39,71 @@
       </div>
 
       <!-- Hero Section -->
-      <div class="hero-section">
-        <div class="faded-text">Amit Yadav</div>
+      <!-- Hero Section -->
+<div class="hero-section">
+  <div class="faded-text">Amit Yadav</div>
 
-        <div class="hero-section-left">
-          <div class="hero-section-heading">Hello 👋</div>
-          <div class="hero-section-subheading1">I am</div>
-          <div class="hero-section-subheading2">Amit Kumar Yadav</div>
-          <div class="hero-section-subheading3">
-            I am a <span class="role"></span>
-          </div>
+  <!-- Left side -->
+  <div class="hero-section-left">
+    <div class="hero-section-heading">Hello 👋</div>
+    <div class="hero-section-subheading1">I am</div>
+    <div class="hero-section-subheading2">Amit Kumar Yadav</div>
+    <div class="hero-section-subheading3">
+      I am a <span class="role"></span>
+    </div>
 
-          <div class="hero-section-description">
-            A final-year student passionate about
-          </div>
-          <div>
-            <span class="dynamic-text"></span>
-          </div>
+    <div class="hero-section-description">
+      A final-year student passionate about
+    </div>
+    <div>
+      <span class="dynamic-text"></span>
+    </div>
 
-          <div class="btn-pink" id="btn">Hire me</div>
-        </div>
+    <!-- 🌐 Social Media Links -->
+<div class="hero-socials">
+  <a href="https://www.linkedin.com/in/amityadav72" target="_blank" title="LinkedIn" class="social linkedin">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+  <a href="https://github.com/amityadav-72" target="_blank" title="GitHub" class="social github">
+    <i class="fab fa-github"></i>
+  </a>
+  <a href="mailto:988981amityadav@gmail.com" title="Email" class="social email">
+    <i class="fas fa-envelope"></i>
+  </a>
+  <a href="https://x.com/Amitkum68386498" target="_blank" title="Twitter" class="social twitter">
+    <i class="fab fa-twitter"></i>
+  </a>
+  <a href="https://linktr.ee/amityadav_72" target="_blank" title="Linktree" class="social linktree">
+    <i class="fas fa-tree"></i>
+  </a>
+  <a href="https://medium.com/@988981amityadav" target="_blank" title="Medium" class="social medium">
+    <i class="fab fa-medium-m"></i>
+  </a>
+</div>
+  </div> <!-- ✅ properly closes .hero-section-left -->
 
-        <div class="hero-section-right">
-          <div class="absolute icons icon-dots">
-            <img src="https://portfolioimage.blob.core.windows.net/images/dots.png" alt="" />
-          </div>
-          <div class="absolute icons icon-cube">
-            <img src="https://portfolioimage.blob.core.windows.net/images/cube.png" alt="" />
-          </div>
-          <div class="absolute icons icon-circle">
-            <img src="https://portfolioimage.blob.core.windows.net/images/circle.png" alt="" />
-          </div>
-          <div class="absolute icons icon-zigzag">
-            <img src="https://portfolioimage.blob.core.windows.net/images/zigzags.png" alt="" />
-          </div>
-          <div class="absolute icons icon-plus">
-            <img src="https://portfolioimage.blob.core.windows.net/images/plus.png" alt="" />
-          </div>
-          <div class="user-image">
-            <img src="https://portfolioimage.blob.core.windows.net/images/Amit1.jpeg" alt="" />
-          </div>
-        </div>
-      </div>
-    </div> <!-- 🌸 END of top-background wrapper -->
+  <!-- Right side -->
+  <div class="hero-section-right">
+    <div class="absolute icons icon-dots">
+      <img src="https://portfolioimage.blob.core.windows.net/images/dots.png" alt="" />
+    </div>
+    <div class="absolute icons icon-cube">
+      <img src="https://portfolioimage.blob.core.windows.net/images/cube.png" alt="" />
+    </div>
+    <div class="absolute icons icon-circle">
+      <img src="https://portfolioimage.blob.core.windows.net/images/circle.png" alt="" />
+    </div>
+    <div class="absolute icons icon-zigzag">
+      <img src="https://portfolioimage.blob.core.windows.net/images/zigzags.png" alt="" />
+    </div>
+    <div class="absolute icons icon-plus">
+      <img src="https://portfolioimage.blob.core.windows.net/images/plus.png" alt="" />
+    </div>
+    <div class="user-image">
+      <img src="https://portfolioimage.blob.core.windows.net/images/Amit1.jpeg" alt="Amit Kumar Yadav" />
+    </div>
+  </div> <!-- ✅ properly closes .hero-section-right -->
+</div> <!-- ✅ closes .hero-section -->
 
 
 
@@ -178,46 +200,31 @@
 fetch("about.html")
   .then(response => response.text())
   .then(data => {
-    document.getElementById("about").innerHTML = data;
+    const aboutSection = document.getElementById("about");
+    aboutSection.innerHTML = data;
 
-    
-    function scrollAboutCenter() {
-      const about = document.getElementById('about');
-      if (!about) return;
-      const card = about.querySelector('.about-card') || about;
-     
-      card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
-      
-      try {
-        card.setAttribute('tabindex', '-1');
-        card.focus({ preventScroll: true });
-      } catch (e) {
-        
-        card.focus();
-      }
-    }
-
+    // ✅ When clicking About link from navbar
     const aboutLink = document.querySelector('a[href="#about"]');
     if (aboutLink) {
       aboutLink.addEventListener('click', e => {
         e.preventDefault();
-        const about = document.getElementById('about');
-        if (about && about.querySelector('.about-card')) {
-          scrollAboutCenter();
-        } else {
+        aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-          const obs = new MutationObserver((mutations, observer) => {
-            if (about.querySelector('.about-card')) {
-              scrollAboutCenter();
-              observer.disconnect();
-            }
-          });
-          obs.observe(about, { childList: true, subtree: true });
-        }
+        // ✅ Update URL hash without reloading the page
+        history.pushState(null, "", "#about");
       });
     }
-    window.location.hash = "#about";
+
+    // ✅ Also handle direct visits (index.html#about)
+    if (window.location.hash === "#about") {
+      setTimeout(() => {
+        aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
+    }
   })
+  .catch(err => console.error("Error loading about section:", err));
+
+
 
   
 
@@ -317,7 +324,7 @@ fetch("projects.html")
         document.body.style.overflow = "auto";
       }
     });
-    window.location.hash = "#projects";
+    // window.location.hash = "#projects";
   })
   .catch(error => console.error("Error loading projects.html:", error));
 
