@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "route": "/images/{file}",
+      "rewrite": "https://portfolioimage.blob.core.windows.net/images/{file}"
+    }
+  ]
+}
