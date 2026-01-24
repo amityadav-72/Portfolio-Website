@@ -238,7 +238,7 @@ fetch("projects.html")
     const modalDesc = document.getElementById("modal-desc");
     const closeBtn = document.querySelector(".close-btn");
 
-    document.querySelectorAll(".view-btn").forEach(btn => {
+    document.querySelectorAll(".project-view-btn").forEach(btn => {
       btn.addEventListener("click", e => {
         e.preventDefault();
         const card = e.target.closest(".card");
