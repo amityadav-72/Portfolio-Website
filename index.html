@@ -135,7 +135,6 @@
     </footer>
   </div>
 
-<div id="projects"></div>
 
   <!-- Global Modal -->
   <div class="modal" style="display: none;">
@@ -294,24 +293,34 @@ fetch("projects.html")
       }
     }
 
-    const projectsLink = document.querySelector('a[href="#projects"]');
-    if (projectsLink) {
-      projectsLink.addEventListener('click', e => {
-        e.preventDefault();
-        const projects = document.getElementById('projects');
+   const projectsLink = document.querySelector('a[href="#projects"]');
+
+if (projectsLink) {
+  projectsLink.addEventListener('click', e => {
+    e.preventDefault();
+
+    const projects = document.getElementById('projects');
+
+    if (projects && projects.querySelector('.problem-grid')) {
+      scrollProjectsCenter();
+    } else {
+      const obsP = new MutationObserver((mutations, observer) => {
         if (projects && projects.querySelector('.problem-grid')) {
           scrollProjectsCenter();
-        } else {
-          const obsP = new MutationObserver((mutations, observer) => {
-            if (projects.querySelector('.problem-grid')) {
-              scrollProjectsCenter();
-              observer.disconnect();
-            }
-          });
-          obsP.observe(projects, { childList: true, subtree: true });
+          observer.disconnect();
         }
       });
+
+      if (projects) {
+        obsP.observe(projects, { childList: true, subtree: true });
+      }
     }
+
+    // ✅ FIX: update URL hash manually
+    history.pushState(null, "", "#projects");
+  });
+}
+
 
     closeBtn.addEventListener("click", () => {
       modal.style.display = "none";
