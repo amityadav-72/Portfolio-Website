@@ -1,0 +1,32 @@
+/* ===================== KEYFRAMES ===================== */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleImage {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes dotsAnimation {
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes cubeRotate {
+  50% { transform: rotateY(180deg); }
+}
+
+@keyframes floatIcons {
+  50% { transform: translateY(-4px); }
+}
+
+/* ===================== ANIMATION CLASSES ===================== */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.float {
+  animation: floatIcons 4s ease-in-out infinite;
+}

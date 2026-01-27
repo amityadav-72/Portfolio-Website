@@ -1,0 +1,265 @@
+ /* ---------- ABOUT CARD ---------- */
+.about-card {
+  max-width: 1100px;
+
+  margin: 120px auto 40px auto; /* Move card further down */
+  background: rgba(255,255,255,0.7);
+  border-radius: 28px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  border: 2px solid #f7b2c7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 48px 56px;
+  gap: 32px;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(.17,.67,.83,.67);
+  will-change: transform;
+  transform: scale(1); /* Initial scale for animation */  
+}
+
+.about-card.visible {
+  transform: scale(1);  /* normal size */
+  transition: transform 0.6s ease; /* smooth transition */
+}
+
+
+.about-content {
+  max-width: 540px;
+}
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 32px;
+  color: #222;
+}
+
+.about-desc {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+.about-buttons {
+  display: flex;
+  gap: 80px;
+  margin-top: 24px;
+}
+
+.about-btn {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.8em 2.2em;
+  min-width: 180px;
+  border-radius: 2em;
+  border: 2px solid #f75c8d;
+  background: transparent;
+  color: #222;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  margin-right: -2em;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  box-sizing: border-box;
+}
+/* --- About Card Scroll Animation --- */
+.about-card.scaled {
+  transform: scale(0.85) translateY(-40px);
+}
+
+.about-btn.outline {
+  background: transparent;
+  color: #222;
+}
+
+.about-btn.filled {
+  background: #f75c8d;
+  color: #fff;
+  border: 2px solid #f75c8d;
+  margin-left: -2em;
+  z-index: 2;
+}
+
+.about-btn:hover {
+  background: #f75c8d;
+  color: #fff;
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.butterfly-img {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- RESPONSIVE MEDIA QUERIES FOR ABOUT SECTION ---------- */
+
+/* --- Tablet (<= 900px) --- */
+@media (max-width: 900px) {
+  .about-card {
+    flex-direction: column;
+    padding: 40px 32px;
+    gap: 28px;
+    margin: 40px 24px 0 24px;
+  }
+
+  .about-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .about-buttons {
+    justify-content: center;
+    align-items: center;
+    gap: 28px; 
+    flex-wrap: wrap;
+  }
+
+  .about-btn {
+    min-width: 200px; 
+    text-align: center;
+    margin: 0;
+  }
+
+  .about-title {
+    font-size: 2.3rem;
+  }
+
+  .about-desc {
+    font-size: 1.1rem;
+  }
+
+  .about-image {
+    margin-top: 20px;
+  }
+
+  .butterfly-img {
+    max-width: 300px;
+  }
+}
+
+/* --- Tablet Mid-Range (850px to 601px) --- */
+@media (max-width: 850px) and (min-width: 601px) {
+  .about-buttons {
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .about-btn {
+    min-width: 200px;
+    text-align: center;
+  }
+}
+
+/* --- Mobile (<= 600px) --- */
+@media (max-width: 600px) {
+  .about-card {
+    margin: 120px 16px 0 16px;
+    padding: 32px 20px;
+    border-radius: 22px;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .about-title {
+    font-size: 1.9rem;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .about-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 20px;
+  }
+
+  .about-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* balanced spacing between buttons */
+    width: 100%;
+  }
+
+  .about-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 240px;
+    padding: 0.8em 1.6em;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    margin: 0; /* remove misalignment */
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .about-btn.outline,
+  .about-btn.filled {
+    margin: 0; /* remove inherited offset */
+  }
+
+  .butterfly-img {
+    max-width: 240px;
+    width: 100%;
+    height: auto;
+    margin-top: 16px;
+  }
+}
+
+/* --- Small Mobile (<= 400px) --- */
+@media (max-width: 400px) {
+  .about-card {
+    bottom: -40px;
+    margin: 50px 12px 0 12px;
+    padding: 28px 16px;
+    border-radius: 20px;
+    gap: 20px;
+  }
+
+  .about-title {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+
+  .about-desc {
+    font-size: 0.95rem;
+    margin-bottom: 16px;
+  }
+
+  .about-buttons {
+    gap: 16px;
+  }
+
+  .about-btn {
+    max-width: 220px;
+    width: 100%;
+    padding: 0.7em 1.4em;
+    font-size: 0.95rem;
+    border-radius: 45px;
+    margin: 0 auto;
+  }
+
+  .butterfly-img {
+    max-width: 200px;
+    margin-top: 10px;
+  }
+}
+
+

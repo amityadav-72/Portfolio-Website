@@ -1,0 +1,327 @@
+/* ===================== HOME / HERO SECTION ===================== */
+
+.hero-section {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6rem;
+  margin: 4rem auto;
+  padding: 0 1rem 8rem;
+  max-width: 1200px;
+  flex-wrap: wrap;
+}
+
+.faded-text {
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(2.5rem, 10vw, 8rem);
+  color: rgba(0, 0, 0, 0.05);
+  font-weight: 900;
+  letter-spacing: 2px;
+  z-index: 0;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* ===================== LEFT SIDE ===================== */
+
+.hero-section-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 2;
+  min-width: 320px;
+}
+
+.hero-section-heading {
+  font-size: 40px;
+  font-weight: 600;
+  color: #343d68;
+}
+
+.hero-section-subheading1,
+.hero-section-subheading3 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #343d68;
+}
+
+.hero-section-subheading2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #4e45d5;
+}
+
+.role {
+  color: #4e45d5;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.hero-section-description {
+  font-size: 1.3rem;
+  color: #444;
+  margin-top: 10px;
+}
+
+.dynamic-text {
+  color: #ff4b2b;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-left: 5px;
+}
+
+/* ===================== SOCIAL ICONS (TRUE 3D) ===================== */
+
+.hero-socials {
+  display: flex;
+  gap: 18px;
+  margin-top: 1.8rem;
+  align-items: center;
+}
+
+.hero-socials a {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  font-size: 1.4rem;
+  color: #7b7b7b;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+
+  transform-style: preserve-3d;
+  transition: transform 0.45s ease, box-shadow 0.45s ease, background 0.45s ease;
+  animation: float3D 5s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float3D {
+  0%, 100% {
+    transform: translateZ(0);
+  }
+  50% {
+    transform: translateZ(18px);
+  }
+}
+
+/* Hover pop */
+.hero-socials a:hover {
+  transform: translateZ(35px) scale(1.15);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
+  color: #fff;
+}
+
+/* Platform colors */
+.social.linkedin:hover {
+  background: linear-gradient(135deg, #0077b5, #00a0dc);
+}
+.social.github:hover {
+  background: linear-gradient(135deg, #24292e, #434c56);
+}
+.social.email:hover {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+.social.twitter:hover {
+  background: linear-gradient(135deg, #1da1f2, #0d8bec);
+}
+.social.linktree:hover {
+  background: linear-gradient(135deg, #39e09b, #00c67c);
+}
+
+/* Tooltip */
+.hero-socials a::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -30px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: 0.3s ease;
+  white-space: nowrap;
+}
+
+.hero-socials a:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===================== HERO RIGHT SECTION ===================== */
+.hero-section-right {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  min-width: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Prevent 3D bleed from socials */
+  transform: none;
+  perspective: none;
+}
+
+/* Generic absolute class for icons */
+.absolute {
+  position: absolute;
+}
+
+/* ===================== IMAGE CARD ===================== */
+
+.user-image {
+  position: relative;
+  width: 350px;
+  height: 350px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 20px;
+  z-index: 2;
+
+  /* ✅ CARD STYLE */
+  background: #ffffff;
+  padding: 14px;
+  border-radius: 18px;
+
+  box-shadow:
+    0 28px 60px rgba(0, 0, 0, 0.18),
+    0 0 0 6px rgba(0, 0, 0, 0.04);
+
+  /* Subtle floating only */
+  animation: imageFloat 6s ease-in-out infinite;
+}
+
+/* IMAGE */
+.user-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  border-radius: 12px;
+
+  /* ✅ STATIC GRAYSCALE */
+  filter: grayscale(100%);
+
+  /* HARD STOP transforms */
+  transform: none !important;
+
+  transition: filter 0.4s ease;
+}
+
+/* Optional: remove grayscale on hover */
+.user-image:hover img {
+  filter: grayscale(0%);
+}
+
+/* Clean floating animation (POSITION ONLY) */
+@keyframes imageFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ===================== ICON ANIMATIONS ===================== */
+
+.icon-dots {
+  z-index: 1;
+  bottom: -1rem;
+  right: 0;
+  animation: dotsAnimation 5s infinite;
+}
+
+@keyframes dotsAnimation {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.icon-cube {
+  z-index: 1;
+  top: -0.8em;
+  right: 1em;
+  animation: cubeRotate 3s infinite;
+}
+
+@keyframes cubeRotate {
+  0% { transform: rotateY(0deg) translateY(0); }
+  50% { transform: rotateY(180deg) translateY(-12px); }
+  100% { transform: rotateY(360deg) translateY(0); }
+}
+
+.icon-circle {
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  animation: shakeEffect 6s linear infinite;
+}
+
+@keyframes shakeEffect {
+  50% { left: 5%; bottom: 10%; }
+}
+
+.icon-zigzag {
+  z-index: 1;
+  top: 1.5em;
+  left: -0.3em;
+  animation: zigzagAnimation 5s ease-in infinite;
+}
+
+@keyframes zigzagAnimation {
+  50% { left: 5%; top: 2%; }
+}
+
+.icon-plus {
+  z-index: 1;
+  top: -0.8rem;
+  left: 50%;
+  animation: shakeEffectPlus 5s ease-in infinite;
+}
+
+@keyframes shakeEffectPlus {
+  50% { top: 3%; left: 48%; }
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 1024px) {
+  .hero-section-right {
+    width: 320px;
+    height: 320px;
+  }
+
+  .user-image {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section-right {
+    width: 260px;
+    height: 260px;
+  }
+
+  .user-image {
+    width: 230px;
+    height: 230px;
+  }
+}

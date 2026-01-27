@@ -4,7 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amit Kumar Yadav</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- ===============================
+     GLOBAL STYLES
+     =============================== -->
+<link rel="stylesheet" href="css/base.css">
+
+<!-- ===============================
+     LAYOUT (Navbar, Footer, Sections)
+     =============================== -->
+<link rel="stylesheet" href="css/layout.css">
+
+<!-- ===============================
+     REUSABLE COMPONENTS
+     =============================== -->
+<link rel="stylesheet" href="css/components.css">
+
+<!-- ===============================
+     ANIMATIONS & EFFECTS
+     =============================== -->
+<link rel="stylesheet" href="css/animations.css">
+
+<!-- ===============================
+     PAGE-SPECIFIC STYLES
+     =============================== -->
+<link rel="stylesheet" href="css/pages/home.css">
+<link rel="stylesheet" href="css/pages/about.css">
+<link rel="stylesheet" href="css/pages/projects.css">
+<link rel="stylesheet" href="css/pages/skills.css">
+<link rel="stylesheet" href="css/pages/timeline.css">
+<link rel="stylesheet" href="css/pages/certifications.css">
+<link rel="stylesheet" href="css/pages/contact.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
@@ -25,7 +55,7 @@
             <div><a href="#about">About</a></div>
             <div><a href="#skills">Skills</a></div>
             <div><a href="#projects">Projects</a></div>
-            <div><a href="#experience">Experience</a></div>
+            <div><a href="#timeline-section">Experience</a></div>
             <div><a href="#certifications">Certifications</a></div>
             <div><a href="#contact">Contact</a></div>
           </div>
@@ -60,7 +90,7 @@
     </div>
 
     <!-- 🌐 Social Media Links -->
-<div class="hero-socials">
+<div class="social-icons hero-socials">
   <a href="https://www.linkedin.com/in/amityadav72" target="_blank" title="LinkedIn" class="social linkedin">
     <i class="fab fa-linkedin-in"></i>
   </a>
@@ -116,7 +146,6 @@
     <div id="about" class="section-with-curves"></div>
     <div id="skills" class="section-with-curves"></div>
     <div id="projects" class="section-with-curves"></div>
-    <div id="experience" class="section-with-curves"></div>
     <section id="timeline-section"></section>
     <div id="certifications"></div>
     <section id="contact"></section>
@@ -125,12 +154,24 @@
     <footer class="footer">
       <div class="footer-container">
         <p>© 2025 Amit Kumar Yadav | All Rights Reserved</p>
-        <div class="footer-socials">
-          <a href="https://www.linkedin.com/in/amityadav72" target="_blank" class="footer-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/amityadav-72" target="_blank" class="footer-icon github"><i class="fab fa-github"></i></a>
-          <a href="mailto:988981amityadav@gmail.com" class="footer-icon gmail"><i class="fas fa-envelope"></i></a>
-          <a href="https://x.com/Amitkum68386498" target="_blank" class="footer-icon twitter"><i class="fab fa-twitter"></i></a>
-        </div>
+        <div class="footer-socials social-icons">
+  <a href="https://www.linkedin.com/in/amityadav72"
+     class="social linkedin"
+     title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+  <a href="https://github.com/amityadav-72"
+     class="social github"
+     title="GitHub"><i class="fab fa-github"></i></a>
+
+  <a href="mailto:988981amityadav@gmail.com"
+     class="social email"
+     title="Email"><i class="fas fa-envelope"></i></a>
+
+  <a href="https://x.com/Amitkum68386498"
+     class="social twitter"
+     title="Twitter"><i class="fab fa-twitter"></i></a>
+</div>
+
       </div>
     </footer>
   </div>
@@ -154,6 +195,40 @@
 <!-- Font Awesome for icons -->
 <script src="https://kit.fontawesome.com/4b0a8b5c1a.js" crossorigin="anonymous"></script>
 
+<script>
+function setupNavScroll(id) {
+  const link = document.querySelector(`a[href="#${id}"]`);
+  const section = document.getElementById(id);
+
+  if (!link || !section) return;
+
+  link.addEventListener("click", e => {
+    e.preventDefault();
+
+    // wait until section has content (for fetched sections)
+    const scrollToSection = () => {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.pushState(null, "", `#${id}`);
+    };
+
+    if (section.innerHTML.trim() !== "") {
+      scrollToSection();
+    } else {
+      const observer = new MutationObserver(() => {
+        if (section.innerHTML.trim() !== "") {
+          scrollToSection();
+          observer.disconnect();
+        }
+      });
+      observer.observe(section, { childList: true, subtree: true });
+    }
+  });
+}
+
+/* Apply to all sections */
+["about", "skills", "projects", "timeline-section", "certifications", "contact"]
+  .forEach(setupNavScroll);
+</script>
 
 
   <!-- Typed.js Animation -->
@@ -338,56 +413,43 @@ if (projectsLink) {
   .catch(error => console.error("Error loading projects.html:", error));
 
 
+  
+ fetch("skills.html")
+  .then(response => response.text())
+  .then(html => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const skillsSection = doc.querySelector(".skills-section");
+    const target = document.getElementById("skills");
 
-  fetch("skills.html")
-    .then(response => response.text())
-    .then(html => {
-    
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const skillsSection = doc.querySelector('.skills-section') || doc.body;
-      const target = document.getElementById('skills');
-      if (!target) return;
+    if (!skillsSection || !target) return;
 
-      
-      target.innerHTML = '';
-      target.appendChild(document.importNode(skillsSection, true));
+    target.innerHTML = "";
+    target.appendChild(document.importNode(skillsSection, true));
 
-      
-      const cards = Array.from(target.querySelectorAll('.phase-card'));
-      const wrapper = document.getElementById('wrapper');
-      if ('IntersectionObserver' in window && wrapper) {
-        const obs = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { root: wrapper, threshold: 0.18 });
-        cards.forEach(c => obs.observe(c));
-      } else {
+    /* ✅ TAB LOGIC — MUST BE HERE */
+    const tabs = target.querySelectorAll(".skills-tabs .tab");
+    const contents = target.querySelectorAll(".tab-content");
 
-        const revealCards = () => {
-          const trigger = window.innerHeight * 0.9;
-          cards.forEach(card => {
-            const top = card.getBoundingClientRect().top;
-            if (top < trigger) card.classList.add('visible');
-          });
-        };
-        const scrollContainer = wrapper || window;
-        scrollContainer.addEventListener('scroll', revealCards);
-        window.addEventListener('resize', revealCards);
-        revealCards();
-      }
-    })
-    .catch(error => console.error('Error loading skills.html:', error));
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+
+        tab.classList.add("active");
+        const targetTab = target.querySelector(`#${tab.dataset.tab}`);
+        if (targetTab) targetTab.classList.add("active");
+      });
+    });
+  })
+  .catch(error => console.error("Error loading skills:", error));
 
     fetch("timeline.html")
   .then(response => response.text())
   .then(data => {
     const target = document.getElementById("timeline-section");
     target.innerHTML = data;
+    
 
 
     setTimeout(() => {

@@ -1,0 +1,76 @@
+/* ===================== SOCIAL ICONS (REUSABLE) ===================== */
+
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+}
+
+.social-icons a {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  color: #7b7b7b;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.45s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  animation: float3D 5s ease-in-out infinite;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Hover */
+.social-icons a:hover {
+  transform: translateZ(35px) scale(1.15);
+  color: #fff;
+}
+
+/* Platform gradients */
+.social.linkedin:hover { background: linear-gradient(135deg,#0077b5,#00a0dc); }
+.social.github:hover   { background: linear-gradient(135deg,#24292e,#434c56); }
+.social.email:hover    { background: linear-gradient(135deg,#ff416c,#ff4b2b); }
+.social.twitter:hover  { background: linear-gradient(135deg,#1da1f2,#0d8bec); }
+.social.linktree:hover { background: linear-gradient(135deg,#39e09b,#00c67c); }
+
+/* Tooltip */
+.social-icons a::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -32px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.social-icons a:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .social-icons {
+    justify-content: center;
+  }
+
+  .social-icons a {
+    width: 46px;
+    height: 46px;
+    font-size: 1.2rem;
+  }
+}

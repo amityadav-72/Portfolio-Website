@@ -462,7 +462,7 @@ body {
 }
 
 
-
+/* 
   /* ---------- ABOUT CARD ---------- */
 .about-card {
   max-width: 1100px;
@@ -726,7 +726,7 @@ body {
     margin-top: 10px;
   }
 }
-
+ */
 
 
 
@@ -2362,12 +2362,11 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 🌐 Remove all link underlines globally */
 a {
   text-decoration: none !important;
 }
 
-/* 🌸 Modern Floating Social Icons - 3D Depth Motion */
+
 .hero-socials {
   display: flex;
   flex-wrap: wrap;

@@ -4,47 +4,139 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Skills</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Global styles -->
+  <link rel="stylesheet" href="css/base.css">
+
+  <!-- Layout (if header/footer is present) -->
+  <link rel="stylesheet" href="css/layout.css">
+
+  <!-- Reusable components -->
+  <link rel="stylesheet" href="css/components.css">
+
+  <!-- Animations -->
+  <link rel="stylesheet" href="css/animations.css">
+
+  <!-- Skills page styles -->
+  <link rel="stylesheet" href="css/pages/skills.css">
 </head>
+
 <body>
 
   <!-- 💡 Skills Roadmap Section -->
-<section class="skills-section" id="skills-roadmap">
-  <div class="roadmap-box">
-    <h1 class="roadmap-title">Skills</h1>
+<section class="skills-section" id="skills">
+  <h1>Skills</h1>
 
-    <div class="roadmap-columns">
-      <div class="roadmap-col phase-card">
-        <p class="phase-number">Build</p>
-        <h2 class="phase-big">Web Development</h2>
+  <!-- Tabs -->
+  <div class="skills-tabs">
+    <button class="tab active" data-tab="dev">Development</button>
+    <button class="tab" data-tab="ai">AI / ML</button>
+    <button class="tab" data-tab="agents">AI Agents</button>
+    <button class="tab" data-tab="data">Data Analytics</button>
+  </div>
 
-        <div class="pill"><span class="pill-dot"></span>HTML, CSS, JavaScript</div>
-        <div class="pill large"><span class="pill-dot"></span>Git, GitHub</div>
-        <div class="pill"><span class="pill-dot"></span>React</div>
-    
+  <!-- Content -->
+  <div class="skills-content">
+
+    <!-- Development -->
+    <div class="tab-content active" id="dev">
+      <div class="skill-row">
+        <span><i class="fab fa-html5"></i> HTML / CSS</span>
+        <div class="bar"><div style="width:90%"></div></div>
+        <small>90%</small>
       </div>
 
-      <div class="roadmap-col phase-card">
-        <p class="phase-number">Analyze</p>
-        <h2 class="phase-big">Data & Analytics</h2>
-
-        <div class="pill"><span class="pill-dot"></span>Python, SQL</div>
-        <div class="pill large"><span class="pill-dot"></span>Power BI, Tableau</div>
-        <div class="pill"><span class="pill-dot"></span>Jupyter Notebook</div>
-        
+      <div class="skill-row">
+        <span><i class="fab fa-js"></i> JavaScript</span>
+        <div class="bar"><div style="width:80%"></div></div>
+        <small>80%</small>
       </div>
 
-      <div class="roadmap-col phase-card">
-        <p class="phase-number">Innovate</p>
-        <h2 class="phase-big">AI & Cloud</h2>
+      <div class="skill-row">
+        <span><i class="fab fa-react"></i> React</span>
+        <div class="bar"><div style="width:75%"></div></div>
+        <small>75%</small>
+      </div>
 
-        <div class="pill"><span class="pill-dot"></span>Azure, GCP, AWS</div>
-        <div class="pill large"><span class="pill-dot"></span>AI Agents, NLP, ML Models</div>
-         <div class="pill"><span class="pill-dot"></span>Streamlit, Azure AI Studio</div>
+      <div class="skill-row">
+        <span><i class="fab fa-python"></i> Python</span>
+        <div class="bar"><div style="width:85%"></div></div>
+        <small>85%</small>
       </div>
     </div>
+
+    <!-- AI / ML -->
+    <div class="tab-content" id="ai">
+      <div class="skill-row">
+        <span><i class="fas fa-brain"></i> Machine Learning</span>
+        <div class="bar"><div style="width:80%"></div></div>
+        <small>80%</small>
+      </div>
+
+      <div class="skill-row">
+        <span><i class="fas fa-network-wired"></i> Deep Learning</span>
+        <div class="bar"><div style="width:70%"></div></div>
+        <small>70%</small>
+      </div>
+
+      <div class="skill-row">
+        <span><i class="fas fa-language"></i> NLP</span>
+        <div class="bar"><div style="width:82%"></div></div>
+        <small>82%</small>
+      </div>
+    </div>
+
+    <!-- AI Agents -->
+    <div class="tab-content" id="agents">
+      <div class="skill-row">
+        <span><i class="fas fa-robot"></i> Agent Design</span>
+        <div class="bar"><div style="width:75%"></div></div>
+        <small>75%</small>
+      </div>
+
+      <div class="skill-row">
+        <span><i class="fas fa-terminal"></i> Prompt Engineering</span>
+        <div class="bar"><div style="width:85%"></div></div>
+        <small>85%</small>
+      </div>
+
+      <div class="skill-row">
+        <span><i class="fas fa-plug"></i> API Integration</span>
+        <div class="bar"><div style="width:72%"></div></div>
+        <small>72%</small>
+      </div>
+    </div>
+
+    <!-- Data Analytics -->
+    <div class="tab-content" id="data">
+      <div class="skill-row">
+        <span><i class="fas fa-database"></i> SQL</span>
+        <div class="bar"><div style="width:85%"></div></div>
+        <small>85%</small>
+      </div>
+
+      <div class="skill-row">
+        <span><i class="fas fa-chart-bar"></i> Power BI / Tableau</span>
+        <div class="bar"><div style="width:75%"></div></div>
+        <small>75%</small>
+      </div>
+
+      <div class="skill-row">
+        <span><i class="fas fa-filter"></i> Data Cleaning</span>
+        <div class="bar"><div style="width:88%"></div></div>
+        <small>88%</small>
+      </div>
+    </div>
+
   </div>
 </section>
+
+
+
+
 
 <script>
   // Reveal animation on scroll
@@ -63,6 +155,19 @@
 
   window.addEventListener("scroll", revealCards);
   window.addEventListener("load", revealCards);
+  const tabs = document.querySelectorAll(".tab");
+  const contents = document.querySelectorAll(".tab-content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      contents.forEach(c => c.classList.remove("active"));
+
+      tab.classList.add("active");
+      document.getElementById(tab.dataset.tab).classList.add("active");
+    });
+  });
+
 </script>
 
 </body>
