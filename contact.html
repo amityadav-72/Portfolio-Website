@@ -9,18 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Font Awesome Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <!-- Global styles -->
   <link rel="stylesheet" href="css/base.css">
 
-  <!-- Layout (navbar / footer if used) -->
+  <!-- Layout -->
   <link rel="stylesheet" href="css/layout.css">
 
-  <!-- Reusable components -->
+  <!-- Components -->
   <link rel="stylesheet" href="css/components.css">
 
   <!-- Animations -->
@@ -32,101 +29,109 @@
 
 <body>
 
-  <section class="contact-section" id="contact">
-    <h2 class="contact-title">Get in Touch</h2>
-    <p class="contact-subtitle">
-      Have a question or want to work together? Fill out the form below or connect through the info provided.
-    </p>
+<section class="contact-section" id="contact">
+  <h2 class="contact-title">Get in Touch</h2>
 
-    <div class="contact-container">
-      <!-- Left Side: Contact Info -->
-      <div class="contact-info">
-        <div class="info-item">
-          <i class="fa-solid fa-envelope"></i>
-          <div>
-            <h4>Email</h4>
-            <p>988981amityadav@gmail.com</p>
-          </div>
-        </div>
+  <p class="contact-subtitle">
+    Have a question or want to work together? Fill out the form below or connect through the info provided.
+  </p>
 
-        <div class="info-item">
-          <i class="fa-solid fa-phone"></i>
-          <div>
-            <h4>Phone</h4>
-            <p>+91 95553 89936</p>
-          </div>
-        </div>
+  <div class="contact-container">
 
-        <div class="info-item">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <h4>Location</h4>
-            <p>Amravati, Maharashtra, India</p>
-          </div>
+    <!-- Left Side -->
+    <div class="contact-info">
+
+      <div class="info-item">
+        <i class="fa-solid fa-envelope"></i>
+        <div>
+          <h4>Email</h4>
+          <p>
+            <a href="mailto:988981amityadav@gmail.com">
+              988981amityadav@gmail.com
+            </a>
+          </p>
         </div>
       </div>
 
-      <!-- Right Side: Contact Form -->
-      <form id="contactForm" class="contact-form">
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            placeholder="Enter your full name" 
-            required>
+      <div class="info-item">
+        <i class="fa-solid fa-phone"></i>
+        <div>
+          <h4>Phone</h4>
+          <p>
+            <a href="tel:+919555389936">
+              +91 95553 89936
+            </a>
+          </p>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="email">Your Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            placeholder="Enter your email address" 
-            required>
+      <div class="info-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <h4>Location</h4>
+          <p>Amravati, Maharashtra, India</p>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="message">Your Message</label>
-          <textarea 
-            id="message" 
-            name="message" 
-            rows="5" 
-            placeholder="Write your message here..." 
-            required></textarea>
-        </div>
-
-        <button type="submit" class="btn">Send Message</button>
-        <p id="formMessage" class="form-message"></p>
-      </form>
     </div>
-  </section>
 
-  <!-- EmailJS Script -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <!-- Right Side -->
+    <form id="contactForm" class="contact-form">
 
-  <script>
-    (function() {
-      emailjs.init("NFpwTrx_zR9md3y80"); 
-    })();
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter your full name"
+          required>
+      </div>
 
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email address"
+          required>
+      </div>
 
-      emailjs.sendForm("service_ttry759", "template_ag6mzdm", this)
-        .then(function() {
-          document.getElementById("formMessage").innerText = "✅ Message sent successfully!";
-          document.getElementById("formMessage").style.color = "green";
-          document.getElementById("contactForm").reset();
-        }, function(error) {
-          document.getElementById("formMessage").innerText = "❌ Failed to send message. Please try again.";
-          document.getElementById("formMessage").style.color = "red";
-          console.error("EmailJS error:", error);
-        });
-    });
-  </script>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea
+          id="message"
+          rows="5"
+          placeholder="Write your message here..."
+          required></textarea>
+      </div>
+
+      <button type="submit" class="btn">Send Message</button>
+      <p id="formMessage" class="form-message"></p>
+
+    </form>
+
+  </div>
+</section>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  const subject = encodeURIComponent("Portfolio Contact Form");
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+  );
+
+  window.location.href = `mailto:988981amityadav@gmail.com?subject=${subject}&body=${body}`;
+
+  document.getElementById("formMessage").innerText = "📩 Opening your mail app...";
+  document.getElementById("formMessage").style.color = "green";
+});
+</script>
 
 </body>
 </html>
