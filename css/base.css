@@ -45,3 +45,103 @@ section {
   margin: 0 auto;
   position: relative;
 }
+
+/* ===================== SECTION SPACING ===================== */
+#about,
+#skills,
+#projects,
+#timeline-section,
+#certifications,
+#contact {
+  margin-top: 48px;
+  position: relative;
+  isolation: isolate;
+}
+
+#about::before,
+#skills::before,
+#projects::before,
+#timeline-section::before,
+#certifications::before,
+#contact::before,
+#about::after,
+#skills::after,
+#projects::after,
+#timeline-section::after,
+#certifications::after,
+#contact::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#about::before,
+#skills::before,
+#projects::before,
+#timeline-section::before,
+#certifications::before,
+#contact::before {
+  width: 210px;
+  height: 210px;
+  top: -26px;
+  left: -38px;
+  background: radial-gradient(circle, rgba(245, 95, 128, 0.16), rgba(245, 95, 128, 0));
+}
+
+#about::after,
+#skills::after,
+#projects::after,
+#timeline-section::after,
+#certifications::after,
+#contact::after {
+  width: 170px;
+  height: 170px;
+  bottom: -22px;
+  right: -24px;
+  background: radial-gradient(circle, rgba(93, 123, 255, 0.14), rgba(93, 123, 255, 0));
+}
+
+#about > *,
+#skills > *,
+#projects > *,
+#timeline-section > *,
+#certifications > *,
+#contact > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  #about,
+  #skills,
+  #projects,
+  #timeline-section,
+  #certifications,
+  #contact {
+    margin-top: 32px;
+  }
+
+  #about::before,
+  #skills::before,
+  #projects::before,
+  #timeline-section::before,
+  #certifications::before,
+  #contact::before {
+    width: 150px;
+    height: 150px;
+    left: -22px;
+  }
+
+  #about::after,
+  #skills::after,
+  #projects::after,
+  #timeline-section::after,
+  #certifications::after,
+  #contact::after {
+    width: 120px;
+    height: 120px;
+    right: -12px;
+  }
+}

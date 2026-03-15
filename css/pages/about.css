@@ -1,116 +1,198 @@
- /* ---------- ABOUT CARD ---------- */
-.about-card {
-  max-width: 1100px;
+/* ===================== ABOUT SECTION ===================== */
 
-  margin: 120px auto 40px auto; /* Move card further down */
-  background: rgba(255,255,255,0.7);
-  border-radius: 28px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-  border: 2px solid #f7b2c7;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 48px 56px;
-  gap: 32px;
+.about-section-wrapper {
   position: relative;
-  transition: transform 0.5s cubic-bezier(.17,.67,.83,.67);
-  will-change: transform;
-  transform: scale(1); /* Initial scale for animation */  
+  padding: 26px 20px 8px;
+}
+
+.about-section {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.about-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 0.95fr;
+  gap: 46px;
+  align-items: center;
+  margin: 42px auto 36px;
+  padding: 52px 56px;
+  border-radius: 30px;
+  background: linear-gradient(130deg, rgba(255, 255, 255, 0.92), rgba(255, 247, 247, 0.82));
+  border: 1px solid rgba(243, 166, 173, 0.38);
+  box-shadow: 0 18px 58px rgba(48, 31, 62, 0.1);
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.5s ease;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  right: -95px;
+  top: -110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(247, 92, 141, 0.18), rgba(247, 92, 141, 0));
+  pointer-events: none;
 }
 
 .about-card.visible {
-  transform: scale(1);  /* normal size */
-  transition: transform 0.6s ease; /* smooth transition */
+  transform: scale(1);
 }
 
+.about-card.scaled {
+  transform: scale(0.96) translateY(-16px);
+}
 
 .about-content {
-  max-width: 540px;
+  max-width: 640px;
+  position: relative;
+  z-index: 1;
+}
+
+.about-kicker {
+  display: inline-flex;
+  padding: 0.4rem 0.76rem;
+  border-radius: 999px;
+  background: rgba(255, 106, 86, 0.14);
+  color: #a12847;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.24px;
+  margin-bottom: 14px;
 }
 
 .about-title {
-  font-size: 3rem;
-  font-weight: 500;
-  margin-bottom: 32px;
-  color: #222;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+  color: #1f2139;
+  line-height: 1.1;
 }
 
 .about-desc {
-  font-size: 1.25rem;
-  line-height: 1.7;
-  color: #444;
-  margin-bottom: 40px;
+  font-size: clamp(1rem, 2.3vw, 1.12rem);
+  line-height: 1.75;
+  color: #3d415b;
+  margin-bottom: 14px;
+}
+
+.about-desc.secondary {
+  color: #4a4f6a;
+  margin-bottom: 20px;
+}
+
+.about-role-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.role-tag {
+  padding: 0.5rem 0.82rem;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 80, 166, 0.25);
+  background: rgba(255, 255, 255, 0.82);
+  color: #2f488e;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .about-buttons {
   display: flex;
-  gap: 80px;
+  gap: 14px;
   margin-top: 24px;
+  flex-wrap: wrap;
 }
 
 .about-btn {
-  font-size: 1.1rem;
-  font-weight: 500;
-  padding: 0.8em 2.2em;
-  min-width: 180px;
-  border-radius: 2em;
-  border: 2px solid #f75c8d;
-  background: transparent;
-  color: #222;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 170px;
+  min-height: 46px;
+  padding: 0.74rem 1.3rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.98rem;
+  font-weight: 700;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-  margin-right: -2em;
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  box-sizing: border-box;
-}
-/* --- About Card Scroll Animation --- */
-.about-card.scaled {
-  transform: scale(0.85) translateY(-40px);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, color 0.22s ease, background-color 0.22s ease;
 }
 
 .about-btn.outline {
-  background: transparent;
-  color: #222;
+  background: #fff;
+  border-color: rgba(247, 92, 141, 0.5);
+  color: #b42f63;
 }
 
 .about-btn.filled {
-  background: #f75c8d;
+  background: linear-gradient(120deg, #f75c8d, #ff7a5c);
   color: #fff;
-  border: 2px solid #f75c8d;
-  margin-left: -2em;
-  z-index: 2;
+  box-shadow: 0 10px 24px rgba(247, 92, 141, 0.28);
 }
 
 .about-btn:hover {
-  background: #f75c8d;
-  color: #fff;
+  transform: translateY(-2px);
+}
+
+.about-btn.outline:hover {
+  background: #fff4f8;
+  box-shadow: 0 8px 18px rgba(180, 47, 99, 0.16);
+}
+
+.about-btn.filled:hover {
+  box-shadow: 0 13px 28px rgba(247, 92, 141, 0.33);
 }
 
 .about-image {
-  flex: 1;
+  margin: 0;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.butterfly-img {
-  max-width: 380px;
+.about-image-glow {
+  position: absolute;
+  width: min(84%, 330px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(104, 131, 255, 0.3), rgba(104, 131, 255, 0));
+  filter: blur(2px);
+  z-index: 0;
+}
+
+.about-portrait {
+  max-width: 370px;
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 20px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 20px 48px rgba(25, 35, 76, 0.24);
+  transition: transform 0.36s ease, filter 0.36s ease;
+  filter: saturate(0.94);
 }
 
-/* ---------- RESPONSIVE MEDIA QUERIES FOR ABOUT SECTION ---------- */
+.about-portrait:hover {
+  transform: translateY(-5px);
+  filter: saturate(1);
+}
 
-/* --- Tablet (<= 900px) --- */
-@media (max-width: 900px) {
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 1000px) {
   .about-card {
-    flex-direction: column;
-    padding: 40px 32px;
+    grid-template-columns: 1fr;
     gap: 28px;
-    margin: 40px 24px 0 24px;
+    padding: 42px 34px;
+    margin: 34px 12px 26px;
   }
 
   .about-content {
@@ -118,147 +200,51 @@
     text-align: center;
   }
 
+  .about-role-tags,
   .about-buttons {
     justify-content: center;
-    align-items: center;
-    gap: 28px; 
-    flex-wrap: wrap;
   }
 
-  .about-btn {
-    min-width: 200px; 
-    text-align: center;
-    margin: 0;
-  }
-
-  .about-title {
-    font-size: 2.3rem;
-  }
-
-  .about-desc {
-    font-size: 1.1rem;
-  }
-
-  .about-image {
-    margin-top: 20px;
-  }
-
-  .butterfly-img {
-    max-width: 300px;
+  .about-portrait {
+    max-width: 310px;
   }
 }
 
-/* --- Tablet Mid-Range (850px to 601px) --- */
-@media (max-width: 850px) and (min-width: 601px) {
-  .about-buttons {
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-    flex-wrap: wrap;
+@media (max-width: 640px) {
+  .about-section-wrapper {
+    padding: 16px 8px 2px;
   }
 
-  .about-btn {
-    min-width: 200px;
-    text-align: center;
-  }
-}
-
-/* --- Mobile (<= 600px) --- */
-@media (max-width: 600px) {
   .about-card {
-    margin: 120px 16px 0 16px;
-    padding: 32px 20px;
-    border-radius: 22px;
-    gap: 24px;
-    text-align: center;
+    padding: 30px 20px;
+    border-radius: 24px;
+    margin: 20px 8px 18px;
   }
 
-  .about-title {
-    font-size: 1.9rem;
-    margin-bottom: 16px;
-    font-weight: 600;
+  .about-kicker {
+    margin-bottom: 10px;
   }
 
-  .about-desc {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #444;
-    margin-bottom: 20px;
+  .about-role-tags {
+    gap: 8px;
+  }
+
+  .role-tag {
+    font-size: 0.76rem;
   }
 
   .about-buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* balanced spacing between buttons */
-    width: 100%;
+    gap: 10px;
   }
 
   .about-btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    max-width: 240px;
-    padding: 0.8em 1.6em;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 50px;
-    margin: 0; /* remove misalignment */
-    text-align: center;
-    box-sizing: border-box;
+    max-width: 250px;
   }
 
-  .about-btn.outline,
-  .about-btn.filled {
-    margin: 0; /* remove inherited offset */
-  }
-
-  .butterfly-img {
-    max-width: 240px;
-    width: 100%;
-    height: auto;
-    margin-top: 16px;
-  }
-}
-
-/* --- Small Mobile (<= 400px) --- */
-@media (max-width: 400px) {
-  .about-card {
-    bottom: -40px;
-    margin: 50px 12px 0 12px;
-    padding: 28px 16px;
-    border-radius: 20px;
-    gap: 20px;
-  }
-
-  .about-title {
-    font-size: 1.6rem;
-    margin-bottom: 12px;
-  }
-
-  .about-desc {
-    font-size: 0.95rem;
-    margin-bottom: 16px;
-  }
-
-  .about-buttons {
-    gap: 16px;
-  }
-
-  .about-btn {
-    max-width: 220px;
-    width: 100%;
-    padding: 0.7em 1.4em;
-    font-size: 0.95rem;
-    border-radius: 45px;
-    margin: 0 auto;
-  }
-
-  .butterfly-img {
-    max-width: 200px;
-    margin-top: 10px;
+  .about-portrait {
+    max-width: 250px;
+    border-radius: 16px;
   }
 }
 

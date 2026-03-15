@@ -26,23 +26,29 @@
 
 <body>
 
-  <!-- 💡 Skills Roadmap Section -->
+  <!-- Skills Section -->
 <section class="skills-section" id="skills">
-  <h1>Skills</h1>
+  <div class="skills-shell">
+    <p class="skills-kicker">Core Capabilities</p>
+    <h1 class="skills-title">Skills</h1>
+    <p class="skills-subtitle">
+      A practical stack built through projects across software development,
+      AI workflows, and analytics.
+    </p>
 
-  <!-- Tabs -->
-  <div class="skills-tabs">
-    <button class="tab active" data-tab="dev">Development</button>
-    <button class="tab" data-tab="ai">AI / ML</button>
-    <button class="tab" data-tab="agents">AI Agents</button>
-    <button class="tab" data-tab="data">Data Analytics</button>
-  </div>
+    <!-- Tabs -->
+    <div class="skills-tabs" role="tablist" aria-label="Skill categories">
+      <button class="tab active" data-tab="dev" role="tab" aria-selected="true">Development</button>
+      <button class="tab" data-tab="ai" role="tab" aria-selected="false">AI / ML</button>
+      <button class="tab" data-tab="agents" role="tab" aria-selected="false">AI Agents</button>
+      <button class="tab" data-tab="data" role="tab" aria-selected="false">Data Analytics</button>
+    </div>
 
-  <!-- Content -->
-  <div class="skills-content">
+    <!-- Content -->
+    <div class="skills-content">
 
     <!-- Development -->
-    <div class="tab-content active" id="dev">
+    <div class="tab-content active" id="dev" role="tabpanel">
       <div class="skill-row">
         <span><i class="fab fa-html5"></i> HTML / CSS</span>
         <div class="bar"><div style="width:90%"></div></div>
@@ -79,7 +85,7 @@
   
 
     <!-- AI / ML -->
-    <div class="tab-content" id="ai">
+    <div class="tab-content" id="ai" role="tabpanel">
       <div class="skill-row">
         <span><i class="fas fa-brain"></i> Machine Learning</span>
         <div class="bar"><div style="width:80%"></div></div>
@@ -100,7 +106,7 @@
     </div>
 
     <!-- AI Agents -->
-    <div class="tab-content" id="agents">
+    <div class="tab-content" id="agents" role="tabpanel">
       <div class="skill-row">
         <span><i class="fas fa-robot"></i> Agent Design</span>
         <div class="bar"><div style="width:75%"></div></div>
@@ -121,7 +127,7 @@
     </div>
 
     <!-- Data Analytics -->
-    <div class="tab-content" id="data">
+    <div class="tab-content" id="data" role="tabpanel">
       <div class="skill-row">
         <span><i class="fas fa-database"></i> SQL</span>
         <div class="bar"><div style="width:85%"></div></div>
@@ -141,6 +147,7 @@
       </div>
     </div>
 
+    </div>
   </div>
 </section>
 
@@ -149,31 +156,17 @@
 
 
 <script>
-  // Reveal animation on scroll
-  const cards = document.querySelectorAll(".phase-card");
-
-  const revealCards = () => {
-    const triggerBottom = window.innerHeight * 0.85;
-
-    cards.forEach(card => {
-      const top = card.getBoundingClientRect().top;
-      if (top < triggerBottom) {
-        card.classList.add("visible");
-      }
-    });
-  };
-
-  window.addEventListener("scroll", revealCards);
-  window.addEventListener("load", revealCards);
   const tabs = document.querySelectorAll(".tab");
   const contents = document.querySelectorAll(".tab-content");
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => t.classList.remove("active"));
+      tabs.forEach(t => t.setAttribute("aria-selected", "false"));
       contents.forEach(c => c.classList.remove("active"));
 
       tab.classList.add("active");
+      tab.setAttribute("aria-selected", "true");
       document.getElementById(tab.dataset.tab).classList.add("active");
     });
   });
