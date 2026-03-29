@@ -71,6 +71,38 @@ body {
   align-items: stretch;
 }
 
+.projects-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.projects-show-more {
+  border: 1px solid rgba(227, 59, 90, 0.3);
+  border-radius: 999px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #fff 0%, #fff3f7 100%);
+  color: #bf2d5f;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(191, 45, 95, 0.12);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 200ms ease;
+}
+
+.projects-show-more:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #fff5f8 0%, #ffe8ef 100%);
+  box-shadow: 0 14px 28px rgba(191, 45, 95, 0.16);
+}
+
+.projects-show-more:focus {
+  outline: 3px solid rgba(191, 45, 95, 0.18);
+  outline-offset: 3px;
+}
+
 .card {
   position: relative;
   background: #fff;
@@ -406,6 +438,11 @@ body {
 
   .modal-content {
     padding: 26px 20px;
+  }
+
+  .projects-show-more {
+    width: 100%;
+    max-width: 320px;
   }
 
   .close-btn {

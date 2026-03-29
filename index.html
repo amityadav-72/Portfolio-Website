@@ -188,6 +188,7 @@
 
 <!-- Font Awesome for icons -->
 <script src="https://kit.fontawesome.com/4b0a8b5c1a.js" crossorigin="anonymous"></script>
+<script src="projects.js"></script>
 
 <script>
 const wrapper = document.getElementById("wrapper");
@@ -381,7 +382,9 @@ fetch("about.html")
 fetch("projects.html")
   .then(response => response.text())
   .then(data => {
-    document.getElementById("projects").innerHTML = data;
+    const projectsSection = document.getElementById("projects");
+    projectsSection.innerHTML = data;
+    window.initializeProjectsSection?.(projectsSection);
     
     const modal = document.querySelector(".modal");
     const modalTitle = document.getElementById("modal-title");
