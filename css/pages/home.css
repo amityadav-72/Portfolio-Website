@@ -207,23 +207,24 @@
   z-index: 2;
 
   padding: 0;
-  border-radius: 20px;
+  border-radius: 58% 42% 37% 63% / 46% 58% 42% 54%;
+  overflow: hidden;
   box-shadow: 0 24px 52px rgba(20, 28, 64, 0.28);
 
-  /* Subtle floating only */
-  animation: imageFloat 6s ease-in-out infinite;
+  /* Floating + organic shape morph */
+  animation: imageFloat 6s ease-in-out infinite, blobMorph 18s ease-in-out infinite;
 }
 
 .user-image::before {
   content: "";
   position: absolute;
   inset: -12px;
-  border-radius: 26px;
+  border-radius: 58% 42% 37% 63% / 46% 58% 42% 54%;
   background: conic-gradient(from 120deg, rgba(255, 111, 78, 0.42), rgba(88, 125, 255, 0.45), rgba(255, 111, 78, 0.42));
   filter: blur(18px);
   z-index: -1;
   opacity: 0.75;
-  animation: haloRotate 9s linear infinite;
+  animation: haloRotate 9s linear infinite, blobMorph 18s ease-in-out infinite reverse;
 }
 
 /* IMAGE */
@@ -232,7 +233,7 @@
   height: 100%;
   object-fit: cover;
 
-  border-radius: 20px;
+  border-radius: inherit;
 
   /* HARD STOP transforms */
   transform: none !important;
@@ -254,6 +255,16 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes blobMorph {
+  0%,
+  100% {
+    border-radius: 58% 42% 37% 63% / 46% 58% 42% 54%;
+  }
+  50% {
+    border-radius: 42% 58% 60% 40% / 58% 40% 60% 42%;
   }
 }
 
@@ -289,7 +300,7 @@
 
   .user-image::before {
     inset: -8px;
-    border-radius: 24px;
+    border-radius: 56% 44% 39% 61% / 48% 57% 43% 52%;
   }
 
   .user-image {
