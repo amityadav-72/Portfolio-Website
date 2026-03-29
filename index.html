@@ -48,8 +48,8 @@
       <div class="container">
         <div class="navbar">
           <div class="logo-container">
-            <img src="https://portfolioimage.blob.core.windows.net/images/A.png" class="logo" alt="Logo">
             <div class="logo-text">Amit Kumar Yadav</div>
+            <div class="logo-tag">AI / Cloud / Automation</div>
           </div>
 
           <div class="nav-items">
@@ -382,8 +382,15 @@ fetch("about.html")
 fetch("projects.html")
   .then(response => response.text())
   .then(data => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(data, "text/html");
     const projectsSection = document.getElementById("projects");
-    projectsSection.innerHTML = data;
+    const projectsMarkup = doc.querySelector(".projects-section");
+
+    if (!projectsSection || !projectsMarkup) return;
+
+    projectsSection.innerHTML = "";
+    projectsSection.appendChild(document.importNode(projectsMarkup, true));
     window.initializeProjectsSection?.(projectsSection);
     
     const modal = document.querySelector(".modal");
@@ -391,7 +398,7 @@ fetch("projects.html")
     const modalDesc = document.getElementById("modal-desc");
     const closeBtn = document.querySelector(".close-btn");
 
-    document.querySelectorAll(".project-view-btn").forEach(btn => {
+    projectsSection.querySelectorAll(".project-view-btn").forEach(btn => {
       btn.addEventListener("click", e => {
         e.preventDefault();
         const card = e.target.closest(".card");
@@ -419,7 +426,10 @@ fetch("projects.html")
   const projects = document.getElementById('projects');
   if (!projects) return;
   const grid = projects.querySelector('.problem-grid');
-  const target = targetEl || (grid && grid.querySelector('.card')) || grid || projects.querySelector('.card') || projects;
+  const firstVisibleCard = grid
+    ? Array.from(grid.querySelectorAll('.card')).find(card => card.style.display !== 'none')
+    : null;
+  const target = targetEl || firstVisibleCard || grid || projects.querySelector('.card') || projects;
   if (!target) return;
 
 
