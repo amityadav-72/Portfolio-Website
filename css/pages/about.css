@@ -155,6 +155,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 1000px;
 }
 
 .about-image-glow {
@@ -176,12 +177,13 @@
   position: relative;
   z-index: 1;
   box-shadow: 0 20px 48px rgba(25, 35, 76, 0.24);
-  transition: transform 0.36s ease, filter 0.36s ease;
+  transition: filter 0.36s ease;
   filter: saturate(0.94);
+  transform-style: preserve-3d;
+  transform: rotateX(0deg) rotateY(0deg);
 }
 
 .about-portrait:hover {
-  transform: translateY(-5px);
   filter: saturate(1);
 }
 
